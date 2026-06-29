@@ -41,9 +41,12 @@ export default function Hero() {
         <div className="max-w-lg mx-auto mb-8">
           <div className="rounded-2xl overflow-hidden shadow-lg">
             <img 
-              src="/wooden-kitchen-set.jpg" 
+              src="https://i.imgur.com/hS0KyrP.jpg" 
               alt="43 Piece Premium Wooden Kitchen Toy Set" 
               className="w-full h-auto object-cover"
+              onError={(e) => {
+                e.currentTarget.src = 'https://via.placeholder.com/400x300/D4AF37/2C1810?text=43+Piece+Wooden+Kitchen+Set';
+              }}
             />
           </div>
         </div>
