@@ -39,16 +39,12 @@ export default function Hero() {
         
         {/* Product Image */}
         <div className="max-w-lg mx-auto mb-8">
-          <div className="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-amber-50 to-amber-100 p-8">
-            <div className="text-center">
-              <div className="text-8xl mb-4">🧸</div>
-              <h3 className="text-xl font-bold text-amber-800 mb-2">৪৩ পিস কাঠের খেলনা সেট</h3>
-              <p className="text-amber-700">আপনার ছবি এখানে আসবে</p>
-              <div className="mt-4 bg-white rounded-lg p-3 text-sm text-gray-600">
-                <p>Image upload করতে:</p>
-                <p className="font-mono text-xs">public/wooden-kitchen-set.jpg</p>
-              </div>
-            </div>
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <img 
+              src="/wooden-kitchen-set.jpg" 
+              alt="43 Piece Premium Wooden Kitchen Toy Set" 
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
       </motion.div>
