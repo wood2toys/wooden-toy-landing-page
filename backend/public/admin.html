@@ -1,57 +1,407 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-    <title>Admin Panel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন প্যানেল - Wooden Toys</title>
     <style>
-        body { font-family: Arial; margin: 20px; background: #f5f5f5; }
-        .header { background: #333; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
-        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .stat-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .stat-card h3 { color: #333; margin: 0 0 10px 0; }
-        .orders { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .orders-header { background: #333; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .refresh-btn { background: #666; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
-        .orders-table { width: 100%; border-collapse: collapse; }
-        .orders-table th, .orders-table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        .orders-table th { background: #f8f9fa; font-weight: 600; }
-        .orders-table tr:hover { background-color: #f5f5f5; }
-        .delete-btn { background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .loading, .no-orders { text-align: center; padding: 40px; color: #666; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 100px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .action-btn.success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .action-btn.warning { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        
+        /* Stats Cards */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px 16px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .stat-card:nth-child(1) .stat-icon { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+        .stat-card:nth-child(2) .stat-icon { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+        .stat-card:nth-child(3) .stat-icon { background: linear-gradient(135deg, #fef3c7, #fed7aa); }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        /* Orders Section */
+        .orders-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .orders-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .orders-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .refresh-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Mobile-First Order Cards */
+        .orders-container {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .order-card {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 20px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .order-card:hover {
+            background-color: #f8fafc;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .order-id {
+            font-family: 'Courier New', monospace;
+            background: #e2e8f0;
+            color: #475569;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .order-status {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .customer-info {
+            margin-bottom: 12px;
+        }
+        
+        .customer-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        
+        .customer-details {
+            color: #64748b;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        .order-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .order-amount {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #059669;
+        }
+        
+        .order-date {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .delete-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .delete-btn:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: translateY(-1px);
+        }
+        
+        .loading, .no-orders {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        
+        .no-orders {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+        
+        /* Desktop Table View */
+        .desktop-table {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .stat-card {
+                padding: 24px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            
+            /* Show table on desktop, hide cards */
+            .mobile-cards {
+                display: none;
+            }
+            
+            .desktop-table {
+                display: block;
+            }
+            
+            .orders-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            
+            .orders-table th {
+                background: #f8fafc;
+                padding: 16px;
+                text-align: left;
+                font-weight: 600;
+                color: #374151;
+                border-bottom: 2px solid #e5e7eb;
+                font-size: 0.85rem;
+            }
+            
+            .orders-table td {
+                padding: 16px;
+                border-bottom: 1px solid #e5e7eb;
+                vertical-align: top;
+                font-size: 0.85rem;
+            }
+            
+            .orders-table tr:hover {
+                background-color: #f8fafc;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🧸 Admin Panel</h1>
-        <p>Orders Management</p>
-    </div>
-    
-    <div class="stats">
-        <div class="stat-card">
-            <h3 id="totalOrders">-</h3>
-            <p>Total Orders</p>
+    <div class="container">
+        <div class="header">
+            <h1>🧸 অ্যাডমিন প্যানেল</h1>
+            <p>Wooden Toys অর্ডার ম্যানেজমেন্ট</p>
         </div>
-        <div class="stat-card">
-            <h3 id="totalRevenue">-</h3>
-            <p>Total Revenue (৳)</p>
+        
+        <div class="action-buttons">
+            <button class="action-btn" onclick="loadOrders()">
+                🔄 রিফ্রেশ
+            </button>
+            <button class="action-btn success" onclick="exportOrders()">
+                📊 এক্সপোর্ট
+            </button>
+            <button class="action-btn warning" onclick="clearOldOrders()">
+                🗑️ পুরাতন অর্ডার
+            </button>
         </div>
-        <div class="stat-card">
-            <h3 id="todayOrders">-</h3>
-            <p>Today's Orders</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-number" id="totalOrders">-</div>
+                <div class="stat-label">মোট অর্ডার</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-number" id="totalRevenue">-</div>
+                <div class="stat-label">মোট আয় (৳)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🕐</div>
+                <div class="stat-number" id="todayOrders">-</div>
+                <div class="stat-label">আজকের অর্ডার</div>
+            </div>
         </div>
-    </div>
-    
-    <div class="orders">
-        <div class="orders-header">
-            <h2>Orders</h2>
-            <button class="refresh-btn" onclick="loadOrders()">Refresh</button>
-        </div>
-        <div id="ordersContent">
-            <div class="loading">Loading...</div>
+        
+        <div class="orders-section">
+            <div class="orders-header">
+                <h2>📋 সাম্প্রতিক অর্ডার</h2>
+                <button class="refresh-btn" onclick="loadOrders()">🔄 রিফ্রেশ</button>
+            </div>
+            
+            <div id="ordersContent">
+                <div class="loading">অর্ডার লোড হচ্ছে...</div>
+            </div>
         </div>
     </div>
 
     <script>
         const API_URL = window.location.origin + '/api';
+        let orders = [];
         
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
@@ -70,8 +420,6 @@
             document.getElementById('todayOrders').textContent = todayOrders;
         }
         
-        let orders = [];
-        
         async function loadOrders() {
             try {
                 const response = await fetch(`${API_URL}/orders`);
@@ -82,10 +430,10 @@
                     displayOrders(data.orders);
                     loadStats();
                 } else {
-                    document.getElementById('ordersContent').innerHTML = '<div class="no-orders">No orders found</div>';
+                    document.getElementById('ordersContent').innerHTML = '<div class="no-orders"><h3>কোন অর্ডার পাওয়া যায়নি</h3><p>অর্ডার এলে এখানে দেখানো হবে।</p></div>';
                 }
             } catch (error) {
-                document.getElementById('ordersContent').innerHTML = '<div class="no-orders">Error loading orders</div>';
+                document.getElementById('ordersContent').innerHTML = '<div class="no-orders"><h3>অর্ডার লোড করতে সমস্যা</h3><p>ইন্টারনেট সংযোগ চেক করুন।</p></div>';
             }
         }
         
@@ -93,60 +441,114 @@
             const container = document.getElementById('ordersContent');
             
             if (orders.length === 0) {
-                container.innerHTML = '<div class="no-orders">No orders yet</div>';
+                container.innerHTML = '<div class="no-orders"><h3>এখনো কোন অর্ডার নেই</h3><p>অর্ডার এলে এখানে দেখানো হবে।</p></div>';
                 return;
             }
             
-            const tableHTML = `
-                <table class="orders-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Customer</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${orders.map(order => `
-                            <tr>
-                                <td>#${order.id}</td>
-                                <td>${order.customerName || 'N/A'}</td>
-                                <td>${order.phoneNumber || 'N/A'}</td>
-                                <td>${order.address || 'N/A'}</td>
-                                <td>${order.quantity || 1} Set</td>
-                                <td>৳${order.totalAmount || 0}</td>
-                                <td>${new Date(order.createdAt).toLocaleDateString()}</td>
-                                <td><button class="delete-btn" onclick="deleteOrder('${order.id}')">Delete</button></td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
+            // Mobile Cards View
+            const mobileHTML = `
+                <div class="mobile-cards orders-container">
+                    ${orders.map(order => `
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div class="order-id">#${order.id}</div>
+                                <div class="order-status">নতুন</div>
+                            </div>
+                            <div class="customer-info">
+                                <div class="customer-name">${order.customerName || 'নাম নেই'}</div>
+                                <div class="customer-details">
+                                    📞 ${order.phoneNumber || 'ফোন নেই'}<br>
+                                    📍 ${order.address || 'ঠিকানা নেই'}
+                                </div>
+                            </div>
+                            <div class="order-summary">
+                                <div>
+                                    <div class="order-amount">৳${order.totalAmount || 0}</div>
+                                    <div class="order-date">${new Date(order.createdAt).toLocaleDateString('bn-BD')}</div>
+                                </div>
+                                <button class="delete-btn" onclick="deleteOrder('${order.id}')">মুছুন</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
             `;
             
-            container.innerHTML = tableHTML;
+            // Desktop Table View
+            const desktopHTML = `
+                <div class="desktop-table">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>অর্ডার ID</th>
+                                <th>কাস্টমার</th>
+                                <th>ফোন</th>
+                                <th>ঠিকানা</th>
+                                <th>পরিমাণ</th>
+                                <th>মোট</th>
+                                <th>তারিখ</th>
+                                <th>অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${orders.map(order => `
+                                <tr>
+                                    <td><span class="order-id">#${order.id}</span></td>
+                                    <td>${order.customerName || 'N/A'}</td>
+                                    <td>${order.phoneNumber || 'N/A'}</td>
+                                    <td>${order.address || 'N/A'}</td>
+                                    <td>${order.quantity || 1} সেট</td>
+                                    <td class="order-amount">৳${order.totalAmount || 0}</td>
+                                    <td>${new Date(order.createdAt).toLocaleDateString('bn-BD')}</td>
+                                    <td><button class="delete-btn" onclick="deleteOrder('${order.id}')">মুছুন</button></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            container.innerHTML = mobileHTML + desktopHTML;
         }
         
         async function deleteOrder(orderId) {
-            if (!confirm('Delete this order?')) return;
+            if (!confirm('এই অর্ডারটি মুছে দিতে চান?')) return;
             
             try {
                 const response = await fetch(`${API_URL}/orders/${orderId}`, { method: 'DELETE' });
                 const data = await response.json();
                 
                 if (data.success) {
-                    alert('Order deleted!');
+                    alert('অর্ডার সফলভাবে মুছে দেওয়া হয়েছে!');
                     loadOrders();
                 } else {
-                    alert('Error deleting order');
+                    alert('অর্ডার মুছতে সমস্যা হয়েছে');
                 }
             } catch (error) {
-                alert('Error deleting order');
+                alert('অর্ডার মুছতে সমস্যা হয়েছে');
             }
+        }
+        
+        function exportOrders() {
+            if (orders.length === 0) {
+                alert('এক্সপোর্ট করার জন্য কোন অর্ডার নেই');
+                return;
+            }
+            
+            const csv = orders.map(order => 
+                `"${order.id}","${order.customerName}","${order.phoneNumber}","${order.address}","${order.quantity}","${order.totalAmount}","${new Date(order.createdAt).toLocaleDateString()}"`
+            ).join('\n');
+            
+            const blob = new Blob([`"ID","Name","Phone","Address","Quantity","Total","Date"\n${csv}`], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'wooden-toys-orders.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+        
+        function clearOldOrders() {
+            alert('এই ফিচারটি শীঘ্রই আসবে');
         }
     </script>
 </body>
