@@ -41,11 +41,11 @@ export default function Hero() {
             {/* Golden border accent */}
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
             
-            {/* Product Image */}
+            {/* Product Image - Clean without any overlays */}
             <div className="mb-6">
               <img 
                 src="/assets/images/wooden-kitchen-set.jpg" 
-                alt="43 Piece Premium Wooden Kitchen Toy Set" 
+                alt="" 
                 className="w-full h-auto object-cover rounded-2xl shadow-lg"
               />
             </div>
