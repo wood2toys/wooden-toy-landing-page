@@ -39,20 +39,20 @@ export default function OrderForm() {
             <input 
               required 
               type="text" 
-              placeholder="আপনার নাম" 
+              placeholder="আপনার নাম লিখুন" 
               className="w-full p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all" 
               onChange={(e) => setFormData({...formData, name: e.target.value})} 
             />
             <input 
               required 
               type="tel" 
-              placeholder="মোবাইল নম্বর" 
+              placeholder="আপনার মোবাইল নম্বর লিখুন" 
               className="w-full p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all" 
               onChange={(e) => setFormData({...formData, phone: e.target.value})} 
             />
             <textarea 
               required 
-              placeholder="সম্পূর্ণ ঠিকানা" 
+              placeholder="গ্রাম, থানা, জেলা লিখুন" 
               className="w-full p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all" 
               rows={3} 
               onChange={(e) => setFormData({...formData, address: e.target.value})} 
