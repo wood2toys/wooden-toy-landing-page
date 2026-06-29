@@ -13,7 +13,7 @@ export default function Hero() {
           ✨ Premium Wooden Toy Collection
         </span>
         <h1 className="text-4xl font-extrabold text-[#2C1810] mb-6 leading-tight tracking-tight">
-          আপনার সন্তানের শৈশব হোক আরও আনন্দময় ও সৃজনশীল! 🌈
+          আপনার সন্তানের শৈশব হোক আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
         </h1>
         <p className="text-lg text-[#5D4E37] mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
