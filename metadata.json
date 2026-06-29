@@ -1,0 +1,6 @@
+{
+  "name": "Wooden Toy Landing Page",
+  "description": "Premium landing page for a 43-piece wooden toy set, optimized for conversion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
