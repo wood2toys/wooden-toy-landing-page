@@ -1,91 +1,159 @@
-import { motion } from "motion/react";
-import { CheckCircle, Phone, Truck, Heart } from "lucide-react";
+import { useEffect } from 'react';
 
 export default function ThankYou() {
+  useEffect(() => {
+    // Facebook Pixel Purchase event
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Purchase', { value: 999, currency: 'BDT' });
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] flex items-center justify-center px-4 py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="max-w-lg w-full"
-      >
-        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-3xl shadow-2xl border-2 border-[#D4AF37] text-center relative overflow-hidden">
-          {/* Gold accent line at top */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
-          
-          {/* Success Icon */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-            className="mb-6"
-          >
-            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          </motion.div>
+    <div style={{
+      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      margin: 0,
+      padding: '20px',
+      background: 'linear-gradient(135deg, #FFF8F0 0%, #F5F0E8 100%)',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div style={{
+        background: 'linear-gradient(135deg, white 0%, #FFFEF7 100%)',
+        padding: '40px',
+        borderRadius: '30px',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+        border: '2px solid #D4AF37',
+        maxWidth: '500px',
+        width: '100%',
+        textAlign: 'center' as const,
+        position: 'relative' as const,
+        overflow: 'hidden'
+      }}>
+        {/* Top border decoration */}
+        <div style={{
+          content: "''",
+          position: 'absolute' as const,
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, #D4AF37 0%, #FFD700 100%)'
+        }}></div>
 
-          {/* Main Message */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="space-y-4"
-          >
-            <h1 className="text-2xl font-bold text-[#2C1810] mb-4">
-              🎉 ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। ✅
-            </h1>
-            
-            <div className="bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] p-4 rounded-2xl border border-[#D4AF37]/30 mb-6">
-              <p className="text-[#5D4E37] font-medium leading-relaxed flex items-start gap-2">
-                <Phone className="w-5 h-5 text-[#8B4513] mt-0.5 flex-shrink-0" />
-                আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করে অর্ডারটি নিশ্চিত করবে এবং দ্রুততম সময়ের মধ্যে ডেলিভারির ব্যবস্থা করবে।
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-r from-[#F0F8FF] to-[#E6F3FF] p-4 rounded-2xl border border-blue-200 mb-6">
-              <p className="text-[#2C5282] font-medium leading-relaxed flex items-start gap-2">
-                <Heart className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                💙 আমাদের ওপর আস্থা রাখার জন্য আন্তরিক ধন্যবাদ। আশা করি আমাদের পণ্য ও সেবায় আপনি সন্তুষ্ট হবেন।
-              </p>
-            </div>
-
-            {/* Order Details Box */}
-            <div className="bg-white/80 p-4 rounded-2xl border border-[#D4AF37]/20 mb-6">
-              <h3 className="font-bold text-[#8B4513] mb-3 flex items-center gap-2">
-                <Truck className="w-5 h-5" />
-                অর্ডার তথ্য
-              </h3>
-              <div className="text-sm text-[#5D4E37] space-y-1">
-                <p>📦 পণ্য: ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট</p>
-                <p>💰 মূল্য: ৳৮৯৯</p>
-                <p>🚚 ডেলিভারি চার্জ: ৳১০০</p>
-                <p className="font-bold border-t pt-1 mt-2">সর্বমোট: ৳৯৯৯</p>
-              </div>
-            </div>
-
-            {/* Next Steps */}
-            <div className="bg-gradient-to-r from-[#E8F5E8] to-[#F0FFF0] p-4 rounded-2xl border border-green-200">
-              <h3 className="font-bold text-green-700 mb-2">পরবর্তী ধাপ:</h3>
-              <ul className="text-sm text-green-600 space-y-1 text-left">
-                <li>✅ আমাদের টিম ২৪ ঘণ্টার মধ্যে কল করবে</li>
-                <li>✅ অর্ডার নিশ্চিত করা হবে</li>
-                <li>✅ ২-৩ দিনের মধ্যে ডেলিভারি</li>
-                <li>✅ ক্যাশ অন ডেলিভারি সুবিধা</li>
-              </ul>
-            </div>
-
-            {/* Back to Home Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.location.href = '/'}
-              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-3 rounded-xl text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 shadow-lg mt-6"
-            >
-              🏠 হোমে ফিরে যান
-            </motion.button>
-          </motion.div>
+        {/* Success Icon */}
+        <div style={{
+          width: '64px',
+          height: '64px',
+          background: '#22C55E',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto 20px',
+          color: 'white',
+          fontSize: '28px'
+        }}>
+          ✅
         </div>
-      </motion.div>
+
+        <h1 style={{
+          color: '#2C1810',
+          fontSize: '24px',
+          marginBottom: '20px',
+          fontWeight: 'bold'
+        }}>
+          🎉 ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। ✅
+        </h1>
+
+        <div style={{
+          background: 'linear-gradient(90deg, #FFF8DC 0%, #FFFACD 100%)',
+          padding: '16px',
+          borderRadius: '16px',
+          border: '1px solid #D4AF37',
+          margin: '16px 0',
+          color: '#5D4E37',
+          fontWeight: '500'
+        }}>
+          📞 আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করে অর্ডারটি নিশ্চিত করবে এবং দ্রুততম সময়ের মধ্যে ডেলিভারির ব্যবস্থা করবে।
+        </div>
+
+        <div style={{
+          background: 'linear-gradient(90deg, #F0F8FF 0%, #E6F3FF 100%)',
+          padding: '16px',
+          borderRadius: '16px',
+          border: '1px solid #93C5FD',
+          margin: '16px 0',
+          color: '#5D4E37',
+          fontWeight: '500'
+        }}>
+          💙 আমাদের ওপর আস্থা রাখার জন্য আন্তরিক ধন্যবাদ। আশা করি আমাদের পণ্য ও সেবায় আপনি সন্তুষ্ট হবেন।
+        </div>
+
+        <div style={{
+          background: 'rgba(255,255,255,0.8)',
+          padding: '16px',
+          borderRadius: '16px',
+          border: '1px solid rgba(212, 175, 55, 0.2)',
+          margin: '16px 0',
+          textAlign: 'left' as const
+        }}>
+          <h3 style={{
+            color: '#8B4513',
+            marginBottom: '12px',
+            fontSize: '16px'
+          }}>
+            🚚 অর্ডার তথ্য
+          </h3>
+          <p style={{ margin: '4px 0', fontSize: '14px', color: '#5D4E37' }}>
+            📦 পণ্য: ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট
+          </p>
+          <p style={{ margin: '4px 0', fontSize: '14px', color: '#5D4E37' }}>
+            💰 মূল্য: ৳৮৯৯
+          </p>
+          <p style={{ margin: '4px 0', fontSize: '14px', color: '#5D4E37' }}>
+            🚚 ডেলিভারি চার্জ: ৳১০০
+          </p>
+          <p style={{
+            fontWeight: 'bold',
+            borderTop: '1px solid #D4AF37',
+            paddingTop: '8px',
+            marginTop: '8px',
+            fontSize: '14px',
+            color: '#5D4E37'
+          }}>
+            সর্বমোট: ৳৯৯৯
+          </p>
+        </div>
+
+        <button 
+          onClick={() => window.location.href = '/'}
+          style={{
+            background: 'linear-gradient(90deg, #8B4513 0%, #A0522D 100%)',
+            color: 'white',
+            border: 'none',
+            padding: '12px 24px',
+            borderRadius: '12px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            width: '100%',
+            marginTop: '20px',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(90deg, #A0522D 0%, #8B4513 100%)';
+            e.currentTarget.style.transform = 'scale(1.02)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(90deg, #8B4513 0%, #A0522D 100%)';
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          🏠 হোমে ফিরে যান
+        </button>
+      </div>
     </div>
   );
 }

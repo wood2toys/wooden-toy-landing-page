@@ -57,16 +57,16 @@ export default function OrderForm() {
       if (response.ok) {
         console.log("Order saved successfully to Vercel backend:", orderData);
         // Redirect to thank you page
-        window.location.href = '/thank-you.html';
+        window.location.href = '/thank-you';
       } else {
         // If API fails, still redirect (user experience first)
         console.log("Vercel API failed, but proceeding:", orderData);
-        window.location.href = '/thank-you.html';
+        window.location.href = '/thank-you';
       }
     } catch (error) {
       // If network error, still redirect (user experience first)  
       console.log("Network error with Vercel backend, but proceeding:", orderData);
-      window.location.href = '/thank-you.html';
+      window.location.href = '/thank-you';
     }
   };
 
