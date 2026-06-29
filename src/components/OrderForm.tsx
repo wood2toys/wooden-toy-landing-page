@@ -30,7 +30,8 @@ export default function OrderForm() {
       <div className="max-w-md mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-[#2C1810] mb-4 tracking-tight">✨ প্রিমিয়াম অর্ডার ফর্ম ✨</h2>
-          <p className="text-[#5D4E37] font-medium">নিচের তথ্য পূরণ করুন</p>
+          <p className="text-[#5D4E37] font-medium mb-2">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</p>
+          <p className="text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
         </div>
         
         <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-6 rounded-3xl shadow-2xl border-2 border-[#D4AF37]/30">
