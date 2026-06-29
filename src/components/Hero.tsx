@@ -65,18 +65,6 @@ export default function Hero() {
               </div>
             </div>
             
-            {/* Features with icons */}
-            <div className="flex justify-center gap-6 text-sm text-[#5D4E37] mb-8 font-semibold">
-                <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-full border border-green-200">
-                  <span className="text-green-600">✅</span>
-                  <span>ক্যাশ অন ডেলিভারি</span>
-                </div>
-                <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-full border border-blue-200">
-                  <span className="text-blue-600">🚚</span>
-                  <span>সারা বাংলাদেশে</span>
-                </div>
-            </div>
-            
             {/* Order button with enhanced styling */}
             <button 
               onClick={handleOrderClick}
