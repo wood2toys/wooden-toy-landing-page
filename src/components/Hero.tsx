@@ -49,36 +49,6 @@ export default function Hero() {
                 className="w-full h-auto object-cover rounded-2xl shadow-lg"
               />
             </div>
-            
-            {/* Original price crossed out */}
-            <div className="text-center mb-4">
-              <span className="text-[#8B4513] line-through text-lg font-medium">পুরোনো মূল্য: ৳১২০০</span>
-            </div>
-            
-            {/* Main offer price - larger and more prominent */}
-            <div className="text-center mb-6">
-              <div className="text-5xl font-black text-[#8B4513] mb-2" style={{fontFamily: 'serif'}}>
-                অফার মূল্য:
-              </div>
-              <div className="text-6xl font-extrabold bg-gradient-to-r from-[#8B4513] to-[#A0522D] bg-clip-text text-transparent">
-                ৳৮৯৯
-              </div>
-            </div>
-            
-            {/* Order button with enhanced styling */}
-            <button 
-              onClick={handleOrderClick}
-              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-5 rounded-2xl text-xl hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-2xl transform hover:scale-105 border-2 border-[#D4AF37]"
-            >
-                <span className="text-2xl">👉</span>
-                <span>এখনই অর্ডার করুন</span>
-                <ArrowRight size={24} />
-            </button>
-            
-            {/* Trust indicator */}
-            <div className="text-center mt-4 text-sm text-[#8B4513] font-medium">
-              🔒 ১০০% নিরাপদ ও বিশ্বস্ত
-            </div>
         </div>
       </motion.div>
     </section>
