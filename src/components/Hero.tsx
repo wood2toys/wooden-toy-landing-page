@@ -51,8 +51,33 @@ export default function Hero() {
             </div>
           </div>
           
-          {/* Order Button below Image */}
-          <div className="mt-6">
+          {/* Quantity Selector */}
+          <div className="mt-6 bg-gradient-to-br from-white to-[#FFFEF7] p-4 rounded-2xl shadow-lg border-2 border-[#D4AF37]/30">
+            <h3 className="font-bold text-[#2C1810] mb-3 text-center">পরিমাণ (সেট)</h3>
+            
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-3 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] cursor-pointer hover:shadow-md transition-all">
+                <span className="font-semibold text-[#8B4513]">৪৩ পিসের ১ সেট</span>
+                <span className="font-bold text-[#8B4513]">৳৯৯৯</span>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D4AF37] bg-[#D4AF37]"></div>
+              </div>
+              
+              <div className="flex items-center justify-between p-3 rounded-xl border-2 border-gray-200 bg-white cursor-pointer hover:shadow-md transition-all">
+                <span className="font-semibold text-gray-700">৪৩ পিসের ২ সেট</span>
+                <span className="font-bold text-green-600">৳১৮৯৯</span>
+                <div className="w-4 h-4 rounded-full border-2 border-gray-300"></div>
+              </div>
+              
+              <div className="flex items-center justify-between p-3 rounded-xl border-2 border-gray-200 bg-white cursor-pointer hover:shadow-md transition-all">
+                <span className="font-semibold text-gray-700">৪৩ পিসের ৩ সেট</span>
+                <span className="font-bold text-green-600">৳২৭৯৯</span>
+                <div className="w-4 h-4 rounded-full border-2 border-gray-300"></div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Order Button below Quantity Selector */}
+          <div className="mt-4">
             <button 
               onClick={() => {
                 const orderForm = document.getElementById('order-form');
