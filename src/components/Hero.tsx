@@ -37,20 +37,51 @@ export default function Hero() {
           ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
-        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-3xl shadow-2xl border-2 border-[#D4AF37] max-w-sm mx-auto mb-8 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
-            <div className="text-[#8B4513] line-through mb-2 text-lg">পুরোনো মূল্য: ৳১২০০</div>
-            <div className="text-4xl font-black text-[#8B4513] mb-4 italic bg-gradient-to-r from-[#8B4513] to-[#A0522D] bg-clip-text text-transparent">অফার মূল্য: ৳৮৯৯</div>
-            <div className="flex justify-center gap-4 text-sm text-[#5D4E37] mb-6 font-semibold">
-                <span className="flex items-center gap-1">✅ ক্যাশ অন ডেলিভারি</span>
-                <span className="flex items-center gap-1">🚚 সারা বাংলাদেশে</span>
+        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-3xl shadow-2xl border-4 border-[#D4AF37] max-w-sm mx-auto mb-8 relative overflow-hidden">
+            {/* Golden border accent */}
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
+            
+            {/* Original price crossed out */}
+            <div className="text-center mb-4">
+              <span className="text-[#8B4513] line-through text-lg font-medium">পুরোনো মূল্য: ৳১২০০</span>
             </div>
+            
+            {/* Main offer price - larger and more prominent */}
+            <div className="text-center mb-6">
+              <div className="text-5xl font-black text-[#8B4513] mb-2" style={{fontFamily: 'serif'}}>
+                অফার মূল্য:
+              </div>
+              <div className="text-6xl font-extrabold bg-gradient-to-r from-[#8B4513] to-[#A0522D] bg-clip-text text-transparent">
+                ৳৮৯৯
+              </div>
+            </div>
+            
+            {/* Features with icons */}
+            <div className="flex justify-center gap-6 text-sm text-[#5D4E37] mb-8 font-semibold">
+                <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-full border border-green-200">
+                  <span className="text-green-600">✅</span>
+                  <span>ক্যাশ অন ডেলিভারি</span>
+                </div>
+                <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-full border border-blue-200">
+                  <span className="text-blue-600">🚚</span>
+                  <span>সারা বাংলাদেশে</span>
+                </div>
+            </div>
+            
+            {/* Order button with enhanced styling */}
             <button 
               onClick={handleOrderClick}
-              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-4 rounded-xl text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-5 rounded-2xl text-xl hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-2xl transform hover:scale-105 border-2 border-[#D4AF37]"
             >
-                👉 এখনই অর্ডার করুন <ArrowRight size={20} />
+                <span className="text-2xl">👉</span>
+                <span>এখনই অর্ডার করুন</span>
+                <ArrowRight size={24} />
             </button>
+            
+            {/* Trust indicator */}
+            <div className="text-center mt-4 text-sm text-[#8B4513] font-medium">
+              🔒 ১০০% নিরাপদ ও বিশ্বস্ত
+            </div>
         </div>
       </motion.div>
     </section>
