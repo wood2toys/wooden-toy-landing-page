@@ -21,7 +21,7 @@ export default function OrderForm() {
     trackInitiateCheckout(totalPrice);
   }, [totalPrice]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Track Lead event when form is submitted
@@ -30,10 +30,44 @@ export default function OrderForm() {
     // Track Purchase event
     trackPurchase(totalPrice);
     
-    console.log("Form submitted:", {...formData, quantity: selectedQuantity, totalPrice});
-    
-    // Redirect to thank you page
-    window.location.href = '/thank-you';
+    // Prepare order data
+    const orderData = {
+      customerName: formData.name,
+      phoneNumber: formData.phone,
+      address: formData.address,
+      quantity: selectedQuantity,
+      productPrice: selectedOption.price,
+      deliveryCharge: 100,
+      totalAmount: totalPrice,
+      productName: "43 Piece Premium Wooden Kitchen Toy Set",
+      orderDate: new Date().toISOString(),
+      source: "wooden-toy-landing-page"
+    };
+
+    try {
+      // Send order to your Railway backend
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      if (response.ok) {
+        console.log("Order saved successfully to Railway backend:", orderData);
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
+      } else {
+        // If API fails, still redirect (user experience first)
+        console.log("Railway API failed, but proceeding:", orderData);
+        window.location.href = '/thank-you';
+      }
+    } catch (error) {
+      // If network error, still redirect (user experience first)  
+      console.log("Network error with Railway backend, but proceeding:", orderData);
+      window.location.href = '/thank-you';
+    }
   };
 
   return (
