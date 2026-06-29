@@ -4,11 +4,22 @@ import { trackLead, trackInitiateCheckout, trackPurchase } from "../utils/facebo
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({ name: "", phone: "", address: "", quantity: 1 });
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const quantityOptions = [
+    { value: 1, text: "৪৩ পিসের ১ সেট - ৳৯৯৯", price: 999 },
+    { value: 2, text: "৪৩ পিসের ২ সেট - ৳১৯৯৮", price: 1998 },
+    { value: 3, text: "৪৩ পিসের ৩ সেট - ৳২৯৯৭", price: 2997 },
+  ];
+
+  const selectedOption = quantityOptions.find(opt => opt.value === selectedQuantity);
+  const totalPrice = selectedOption.price + 100; // Adding delivery charge
 
   // Track InitiateCheckout when component loads
   useEffect(() => {
-    trackInitiateCheckout(999);
-  }, []);
+    trackInitiateCheckout(totalPrice);
+  }, [totalPrice]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,10 +27,10 @@ export default function OrderForm() {
     // Track Lead event when form is submitted
     trackLead();
     
-    // Track Purchase event (default quantity is 1)
-    trackPurchase(999 * 1);
+    // Track Purchase event
+    trackPurchase(totalPrice);
     
-    console.log("Form submitted:", {...formData, quantity: 1});
+    console.log("Form submitted:", {...formData, quantity: selectedQuantity, totalPrice});
     
     // Redirect to thank you page
     window.location.href = '/thank-you';
@@ -57,11 +68,45 @@ export default function OrderForm() {
               onChange={(e) => setFormData({...formData, address: e.target.value})} 
             />
             
+            {/* Quantity Dropdown */}
+            <div className="relative">
+              <label className="block text-[#8B4513] font-semibold mb-2">পরিমাণ (সেট)</label>
+              <div 
+                className="w-full p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                <span>{selectedOption.text}</span>
+                <svg className={`w-5 h-5 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
+              
+              {showDropdown && (
+                <div className="absolute top-full left-0 right-0 bg-white border-2 border-[#D4AF37]/20 rounded-xl mt-1 shadow-lg z-10">
+                  {quantityOptions.map((option) => (
+                    <div
+                      key={option.value}
+                      className={`p-4 cursor-pointer hover:bg-[#FFF8DC] transition-colors ${
+                        selectedQuantity === option.value ? 'bg-blue-500 text-white' : 'text-[#2C1810]'
+                      }`}
+                      onClick={() => {
+                        setSelectedQuantity(option.value);
+                        setFormData({...formData, quantity: option.value});
+                        setShowDropdown(false);
+                      }}
+                    >
+                      {option.text}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            
             <div className="bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] p-4 rounded-2xl space-y-2 text-sm border-2 border-[#D4AF37]/30 shadow-inner">
-                <div className="flex justify-between text-[#8B4513]"><span>পণ্যের মূল্য:</span> <span className="font-semibold">৳899</span></div>
+                <div className="flex justify-between text-[#8B4513]"><span>পণ্যের মূল্য:</span> <span className="font-semibold">৳{selectedOption.price}</span></div>
                 <div className="flex justify-between text-[#8B4513]"><span>ডেলিভারি চার্জ:</span> <span className="font-semibold">৳100</span></div>
                 <hr className="border-[#D4AF37]/50"/>
-                <div className="flex justify-between font-bold text-lg text-[#8B4513]"><span>সর্বমোট:</span> <span>৳999</span></div>
+                <div className="flex justify-between font-bold text-lg text-[#8B4513]"><span>সর্বমোট:</span> <span>৳{totalPrice}</span></div>
             </div>
             
             <button 
