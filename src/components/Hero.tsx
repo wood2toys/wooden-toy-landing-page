@@ -39,12 +39,32 @@ export default function Hero() {
         
         {/* Product Image */}
         <div className="max-w-lg mx-auto mb-8">
-          <div className="rounded-2xl overflow-hidden shadow-lg">
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
             <img 
               src="https://i.postimg.cc/j5BbMzKz/wooden-kitchen-toy-set.jpg"
               alt="43 Piece Premium Wooden Kitchen Toy Set" 
               className="w-full h-auto object-cover"
             />
+            {/* Price Badge on Image */}
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+              অফার প্রাইস: ৳৮৯৯
+            </div>
+          </div>
+          
+          {/* Order Button below Image */}
+          <div className="mt-6">
+            <button 
+              onClick={() => {
+                const orderForm = document.getElementById('order-form');
+                if (orderForm) {
+                  orderForm.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 rounded-xl text-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-orange-400"
+            >
+              🛒 এখনই অর্ডার করুন
+            </button>
+            <p className="text-center text-sm text-gray-600 mt-2">সারা বাংলাদেশে যে কোন ঠিকানায় ডেলিভারি সুবিধা</p>
           </div>
         </div>
       </motion.div>
