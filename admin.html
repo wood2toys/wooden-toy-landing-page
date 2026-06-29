@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wooden Toys Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-amber-800 text-white p-4 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-2xl font-bold">🧸 Wooden Toys Admin</h1>
+                <div class="text-sm">
+                    <span class="bg-amber-600 px-3 py-1 rounded">Admin Panel</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Stats -->
+        <div class="container mx-auto p-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-100">
+                            <span class="text-2xl">📦</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm text-gray-600">Total Orders</p>
+                            <p class="text-2xl font-bold" id="totalOrders">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-100">
+                            <span class="text-2xl">💰</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm text-gray-600">Total Revenue</p>
+                            <p class="text-2xl font-bold" id="totalRevenue">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-yellow-100">
+                            <span class="text-2xl">⏳</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm text-gray-600">Pending Orders</p>
+                            <p class="text-2xl font-bold" id="pendingOrders">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-100">
+                            <span class="text-2xl">👥</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm text-gray-600">Today's Orders</p>
+                            <p class="text-2xl font-bold" id="todayOrders">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold">Recent Orders</h2>
+                        <div class="flex space-x-2">
+                            <button onclick="refreshOrders()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                🔄 Refresh
+                            </button>
+                            <button onclick="exportOrders()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                                📧 Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order #</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody" class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td colspan="9" class="px-6 py-4 text-center text-gray-500">
+                                    Loading orders...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://woodden-toyes-production.up.railway.app/api';
+        
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                const response = await fetch(`${API_URL}/orders`);
+                const orders = await response.json();
+                
+                // Update stats
+                document.getElementById('totalOrders').textContent = orders.length;
+                document.getElementById('totalRevenue').textContent = '৳' + orders.reduce((sum, order) => sum + order.totalAmount, 0);
+                document.getElementById('pendingOrders').textContent = orders.filter(o => o.status === 'pending').length;
+                
+                const today = new Date().toDateString();
+                const todayOrders = orders.filter(o => new Date(o.orderDate).toDateString() === today);
+                document.getElementById('todayOrders').textContent = todayOrders.length;
+                
+                // Load orders table
+                loadOrdersTable(orders);
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                document.getElementById('totalOrders').textContent = 'Error';
+            }
+        }
+        
+        // Load orders table
+        function loadOrdersTable(orders) {
+            const tbody = document.getElementById('ordersTableBody');
+            tbody.innerHTML = '';
+            
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" class="px-6 py-4 text-center text-gray-500">No orders found</td></tr>';
+                return;
+            }
+            
+            orders.forEach((order, index) => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                
+                const statusColor = order.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#${1000 + index}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${order.customerName}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <a href="tel:${order.phoneNumber}" class="text-blue-600 hover:underline">${order.phoneNumber}</a>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">${order.address}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${order.quantity} sets</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">৳${order.totalAmount}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${new Date(order.orderDate).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs rounded-full ${statusColor}">
+                            ${order.status || 'pending'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="copyOrderDetails(${JSON.stringify(order).replace(/"/g, '&quot;')})" class="text-blue-600 hover:text-blue-900 mr-2">Copy</button>
+                        <button onclick="updateOrderStatus('${order._id}', 'confirmed')" class="text-green-600 hover:text-green-900">Confirm</button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+        
+        // Refresh orders
+        async function refreshOrders() {
+            await loadDashboard();
+        }
+        
+        // Copy order details
+        function copyOrderDetails(order) {
+            const details = `
+Order Details:
+Customer: ${order.customerName}
+Phone: ${order.phoneNumber}
+Address: ${order.address}
+Quantity: ${order.quantity} sets
+Total: ৳${order.totalAmount}
+Date: ${new Date(order.orderDate).toLocaleString()}
+            `.trim();
+            
+            navigator.clipboard.writeText(details).then(() => {
+                alert('Order details copied to clipboard!');
+            });
+        }
+        
+        // Export orders
+        function exportOrders() {
+            // Simple CSV export functionality
+            alert('Export functionality coming soon!');
+        }
+        
+        // Update order status
+        async function updateOrderStatus(orderId, newStatus) {
+            try {
+                const response = await fetch(`${API_URL}/orders/${orderId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                
+                if (response.ok) {
+                    alert('Order status updated!');
+                    await refreshOrders();
+                } else {
+                    alert('Failed to update order status');
+                }
+            } catch (error) {
+                alert('Error updating order status');
+            }
+        }
+        
+        // Load dashboard on page load
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+        
+        // Auto refresh every 30 seconds
+        setInterval(loadDashboard, 30000);
+    </script>
+</body>
+</html>
