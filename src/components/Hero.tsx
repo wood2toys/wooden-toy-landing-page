@@ -40,63 +40,11 @@ export default function Hero() {
         {/* Product Image */}
         <div className="max-w-lg mx-auto mb-8">
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            {/* Fallback to CSS illustration if image fails */}
-            <div className="relative bg-gradient-to-br from-amber-50 to-orange-100 p-8">
-              <div className="aspect-square bg-white rounded-xl p-6 shadow-inner">
-                <div className="w-full h-full bg-gradient-to-br from-amber-100 to-orange-200 rounded-lg flex items-center justify-center relative overflow-hidden">
-                  {/* Kitchen Items Grid Illustration */}
-                  <div className="grid grid-cols-5 gap-1 w-full h-full p-3">
-                    {/* Row 1 */}
-                    <div className="bg-amber-600 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-500 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-700 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-600 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-500 rounded-full shadow-sm"></div>
-                    
-                    {/* Row 2 */}
-                    <div className="bg-orange-700 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-600 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-500 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-700 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-600 rounded-lg shadow-sm"></div>
-                    
-                    {/* Row 3 */}
-                    <div className="bg-amber-500 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-700 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-600 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-500 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-700 rounded-full shadow-sm"></div>
-                    
-                    {/* Row 4 */}
-                    <div className="bg-orange-600 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-500 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-700 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-600 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-500 rounded-lg shadow-sm"></div>
-                    
-                    {/* Row 5 */}
-                    <div className="bg-amber-700 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-600 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-500 rounded-full shadow-sm"></div>
-                    <div className="bg-orange-700 rounded-lg shadow-sm"></div>
-                    <div className="bg-amber-600 rounded-full shadow-sm"></div>
-                  </div>
-                  
-                  {/* Center Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-amber-900 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg border-2 border-white">
-                      ৪৩ পিস কাঠের সেট
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="text-center mt-4">
-                <h3 className="text-lg font-bold text-amber-900 mb-1">প্রিমিয়াম কাঠের রান্নাঘর সেট</h3>
-                <p className="text-sm text-amber-700">সম্পূর্ণ ৪৩ পিস খেলনার সংগ্রহ</p>
-              </div>
-            </div>
-            
+            <img 
+              src="/wooden-kitchen-set.jpg"
+              alt="43 Piece Premium Wooden Kitchen Toy Set" 
+              className="w-full h-auto object-cover"
+            />
             {/* Price Badge on Image */}
             <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
               অফার প্রাইস: ৳৮৯৯
