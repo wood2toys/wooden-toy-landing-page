@@ -12,8 +12,9 @@ export default function SimplePage() {
       </div>
 
       <div className="max-w-md mx-auto">
-        {/* Product Image */}
+        {/* Product Image - Clean and Simple */}
         <div className="bg-white rounded-2xl p-4 shadow-lg border-4 border-yellow-400 mb-6">
+          {/* Just the Product Image */}
           <div className="mb-4">
             <img 
               src="/assets/images/wooden-kitchen-set.jpg" 
