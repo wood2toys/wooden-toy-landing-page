@@ -41,6 +41,15 @@ export default function Hero() {
             {/* Golden border accent */}
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
             
+            {/* Product Image */}
+            <div className="mb-6">
+              <img 
+                src="/assets/images/wooden-kitchen-set.jpg" 
+                alt="43 Piece Premium Wooden Kitchen Toy Set" 
+                className="w-full h-auto object-cover rounded-2xl shadow-lg"
+              />
+            </div>
+            
             {/* Original price crossed out */}
             <div className="text-center mb-4">
               <span className="text-[#8B4513] line-through text-lg font-medium">পুরোনো মূল্য: ৳১২০০</span>

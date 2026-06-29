@@ -1,5 +1,4 @@
 import Hero from './Hero';
-import ProductImage from './ProductImage';
 import ProblemSection from './ProblemSection';
 import WhyWoodenToys from './WhyWoodenToys';
 import InsideTheBox from './InsideTheBox';
@@ -22,7 +21,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProductImage />
       <ProblemSection />
       <WhyWoodenToys />
       <InsideTheBox />
