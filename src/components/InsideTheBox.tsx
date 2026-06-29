@@ -4,8 +4,16 @@ export default function InsideTheBox() {
     <section className="px-4 py-16 bg-[#FDFBF7]">
       <h2 className="text-2xl font-bold mb-8 text-[#2D2424] tracking-tight">Inside The Box (মোট ৪৩টি)</h2>
       
-      {/* Small Product Image */}
-      <div className="max-w-xs mx-auto mb-8">
+      <div className="grid grid-cols-3 gap-4 mb-8">
+        {items.map((item, i) => (
+          <div key={i} className="bg-white p-4 rounded-3xl shadow-sm text-center font-bold text-[#5F7161] border border-[#EBE3D5]">
+            {item}
+          </div>
+        ))}
+      </div>
+      
+      {/* Small Product Image - After Items List */}
+      <div className="max-w-32 mx-auto">
         <div className="rounded-2xl overflow-hidden shadow-lg">
           <img 
             src="/wooden-kitchen-set.jpg"
@@ -13,14 +21,6 @@ export default function InsideTheBox() {
             className="w-full h-auto object-cover"
           />
         </div>
-      </div>
-      
-      <div className="grid grid-cols-3 gap-4">
-        {items.map((item, i) => (
-          <div key={i} className="bg-white p-4 rounded-3xl shadow-sm text-center font-bold text-[#5F7161] border border-[#EBE3D5]">
-            {item}
-          </div>
-        ))}
       </div>
     </section>
   );
