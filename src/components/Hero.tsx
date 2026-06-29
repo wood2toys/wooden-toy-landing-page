@@ -36,20 +36,6 @@ export default function Hero() {
         <p className="text-lg text-[#5D4E37] mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
-        
-        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-3xl shadow-2xl border-4 border-[#D4AF37] max-w-sm mx-auto mb-8 relative overflow-hidden">
-            {/* Golden border accent */}
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
-            
-            {/* Product Image - Clean without any overlays */}
-            <div className="mb-6">
-              <img 
-                src="/assets/images/wooden-kitchen-set.jpg" 
-                alt="" 
-                className="w-full h-auto object-cover rounded-2xl shadow-lg"
-              />
-            </div>
-        </div>
       </motion.div>
     </section>
   );

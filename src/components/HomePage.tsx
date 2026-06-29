@@ -2,6 +2,7 @@ import Hero from './Hero';
 import ProblemSection from './ProblemSection';
 import WhyWoodenToys from './WhyWoodenToys';
 import InsideTheBox from './InsideTheBox';
+import ProductShowcase from './ProductShowcase';
 import OrderForm from './OrderForm';
 import Footer from './Footer';
 import { trackAddToCart } from '../utils/facebook-pixel';
@@ -24,6 +25,7 @@ export default function HomePage() {
       <ProblemSection />
       <WhyWoodenToys />
       <InsideTheBox />
+      <ProductShowcase />
       <OrderForm />
       <Footer />
       {/* Sticky Order Button */}
