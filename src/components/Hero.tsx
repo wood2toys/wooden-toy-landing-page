@@ -30,7 +30,7 @@ export default function Hero() {
         <span className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-[#2C1810] px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 inline-block border-2 border-[#B8860B] shadow-lg">
           ✨ Premium Wooden Toy Collection
         </span>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2C1810] mb-4 sm:mb-6 leading-tight tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#2C1810] mb-4 sm:mb-6 leading-tight tracking-tight">
           আপনার সন্তানের শৈশব হোক<br className="block sm:hidden" /> আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
         </h1>
         <p className="text-base sm:text-lg text-[#5D4E37] mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed font-medium">
