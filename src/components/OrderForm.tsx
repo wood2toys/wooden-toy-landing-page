@@ -68,7 +68,7 @@ export default function OrderForm() {
               type="submit" 
               className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-4 rounded-xl text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-[#D4AF37]"
             >
-                ✅ অর্ডার কনফার্ম করতে নিচের ফর্ম পূরণ করুন
+                ✅ অর্ডার কনফার্ম করুন
             </button>
             <p className="text-center text-xs text-[#8B4513] font-medium">🔒 আপনার তথ্য সম্পূর্ণ নিরাপদ ও গোপনীয়।</p>
           </form>
