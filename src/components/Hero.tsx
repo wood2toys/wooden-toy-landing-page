@@ -27,13 +27,13 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-[#2C1810] px-6 py-2 rounded-full text-sm font-bold mb-6 inline-block border-2 border-[#B8860B] shadow-lg">
+        <span className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-[#2C1810] px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-4 sm:mb-6 inline-block border-2 border-[#B8860B] shadow-lg">
           ✨ Premium Wooden Toy Collection
         </span>
-        <h1 className="text-4xl font-extrabold text-[#2C1810] mb-6 leading-tight tracking-tight">
-          আপনার সন্তানের শৈশব হোক আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2C1810] mb-4 sm:mb-6 leading-tight tracking-tight">
+          আপনার সন্তানের শৈশব হোক<br className="block sm:hidden" /> আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
         </h1>
-        <p className="text-lg text-[#5D4E37] mb-8 max-w-xl mx-auto leading-relaxed font-medium">
+        <p className="text-base sm:text-lg text-[#5D4E37] mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
