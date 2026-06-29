@@ -55,18 +55,18 @@ export default function OrderForm() {
       });
 
       if (response.ok) {
-        console.log("Order saved successfully to Railway backend:", orderData);
+        console.log("Order saved successfully to Vercel backend:", orderData);
         // Redirect to thank you page
-        window.location.href = '/thank-you';
+        window.location.href = '/thank-you.html';
       } else {
         // If API fails, still redirect (user experience first)
-        console.log("Railway API failed, but proceeding:", orderData);
-        window.location.href = '/thank-you';
+        console.log("Vercel API failed, but proceeding:", orderData);
+        window.location.href = '/thank-you.html';
       }
     } catch (error) {
       // If network error, still redirect (user experience first)  
-      console.log("Network error with Railway backend, but proceeding:", orderData);
-      window.location.href = '/thank-you';
+      console.log("Network error with Vercel backend, but proceeding:", orderData);
+      window.location.href = '/thank-you.html';
     }
   };
 
