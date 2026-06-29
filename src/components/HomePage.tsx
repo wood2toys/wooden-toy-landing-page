@@ -4,7 +4,6 @@ import ProblemSection from './ProblemSection';
 import WhyWoodenToys from './WhyWoodenToys';
 import InsideTheBox from './InsideTheBox';
 import OrderForm from './OrderForm';
-import FAQ from './FAQ';
 import Footer from './Footer';
 import { trackAddToCart } from '../utils/facebook-pixel';
 
@@ -28,7 +27,6 @@ export default function HomePage() {
       <WhyWoodenToys />
       <InsideTheBox />
       <OrderForm />
-      <FAQ />
       <Footer />
       {/* Sticky Order Button */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-r from-white to-[#FFFEF7] border-t-2 border-[#D4AF37] z-50 backdrop-blur-sm">
