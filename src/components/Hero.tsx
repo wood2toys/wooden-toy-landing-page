@@ -21,13 +21,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] px-4 pt-10 pb-8 text-center">
+    <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] px-4 pt-6 sm:pt-8 pb-8 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-[#2C1810] px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-4 sm:mb-6 inline-block border-2 border-[#B8860B] shadow-lg">
+        <span className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-[#2C1810] px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 inline-block border-2 border-[#B8860B] shadow-lg">
           ✨ Premium Wooden Toy Collection
         </span>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2C1810] mb-4 sm:mb-6 leading-tight tracking-tight">
