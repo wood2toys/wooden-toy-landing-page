@@ -20,7 +20,6 @@ export default function Hero() {
     }
   };
 
-export default function Hero() {
   return (
     <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] px-4 pt-10 pb-16 text-center">
       <motion.div
