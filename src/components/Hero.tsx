@@ -1,5 +1,24 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { useEffect } from "react";
+import { trackViewContent, trackAddToCart } from "../utils/facebook-pixel";
+
+export default function Hero() {
+  // Track ViewContent when component mounts
+  useEffect(() => {
+    trackViewContent("43 Piece Premium Wooden Kitchen Toy Set", 899);
+  }, []);
+
+  const handleOrderClick = () => {
+    // Track AddToCart when order button is clicked
+    trackAddToCart("43 Piece Premium Wooden Kitchen Toy Set", 899);
+    
+    // Scroll to order form
+    const orderForm = document.getElementById('order-form');
+    if (orderForm) {
+      orderForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
 export default function Hero() {
   return (
@@ -27,7 +46,10 @@ export default function Hero() {
                 <span className="flex items-center gap-1">✅ ক্যাশ অন ডেলিভারি</span>
                 <span className="flex items-center gap-1">🚚 সারা বাংলাদেশে</span>
             </div>
-            <button className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-4 rounded-xl text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
+            <button 
+              onClick={handleOrderClick}
+              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-4 rounded-xl text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
                 👉 এখনই অর্ডার করুন <ArrowRight size={20} />
             </button>
         </div>

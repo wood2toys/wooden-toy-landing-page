@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { trackLead, trackInitiateCheckout, trackPurchase } from "../utils/facebook-pixel";
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({ name: "", phone: "", address: "", quantity: 1 });
 
+  // Track InitiateCheckout when component loads
+  useEffect(() => {
+    trackInitiateCheckout(999);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track Lead event when form is submitted
+    trackLead();
+    
+    // Track Purchase event
+    trackPurchase(999 * formData.quantity);
+    
     console.log("Form submitted:", formData);
-    alert("আপনার অর্ডার সফলভাবে গৃহীত হয়েছে!");
+    
+    // Redirect to thank you page
+    window.location.href = '/thank-you';
   };
 
   return (
-    <section className="px-4 py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
+    <section id="order-form" className="px-4 py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
       <div className="max-w-md mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-[#2C1810] mb-4 tracking-tight">✨ প্রিমিয়াম অর্ডার ফর্ম ✨</h2>
