@@ -3,30 +3,31 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="bg-[#FDFBF7] px-4 pt-10 pb-16 text-center">
+    <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] px-4 pt-10 pb-16 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="bg-[#F0EBE3] text-[#5F7161] px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block border border-[#D0C9C0]">
-          🔥 Best Selling Wooden Toy Set
+        <span className="bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-[#2C1810] px-6 py-2 rounded-full text-sm font-bold mb-6 inline-block border-2 border-[#B8860B] shadow-lg">
+          ✨ Premium Wooden Toy Collection
         </span>
-        <h1 className="text-4xl font-extrabold text-[#2D2424] mb-6 leading-tight tracking-tight">
+        <h1 className="text-4xl font-extrabold text-[#2C1810] mb-6 leading-tight tracking-tight">
           আপনার সন্তানের শৈশব হোক আরও আনন্দময় ও সৃজনশীল! 🌈
         </h1>
-        <p className="text-lg text-[#6D5D5D] mb-8 max-w-xl mx-auto leading-relaxed">
+        <p className="text-lg text-[#5D4E37] mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
-        <div className="bg-white p-6 rounded-3xl shadow-xl border border-[#EBE3D5] max-w-sm mx-auto mb-8">
-            <div className="text-[#8D8070] line-through mb-1">পুরোনো মূল্য: ৳১২০০</div>
-            <div className="text-3xl font-black text-[#5F7161] mb-4 italic">অফার মূল্য: ৳৮৯৯</div>
-            <div className="flex justify-center gap-4 text-sm text-[#8D8070] mb-6 font-medium">
-                <span>✅ ক্যাশ অন ডেলিভারি</span>
-                <span>🚚 সারা বাংলাদেশে হোম ডেলিভারি</span>
+        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-8 rounded-3xl shadow-2xl border-2 border-[#D4AF37] max-w-sm mx-auto mb-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700]"></div>
+            <div className="text-[#8B4513] line-through mb-2 text-lg">পুরোনো মূল্য: ৳১২০০</div>
+            <div className="text-4xl font-black text-[#8B4513] mb-4 italic bg-gradient-to-r from-[#8B4513] to-[#A0522D] bg-clip-text text-transparent">অফার মূল্য: ৳৮৯৯</div>
+            <div className="flex justify-center gap-4 text-sm text-[#5D4E37] mb-6 font-semibold">
+                <span className="flex items-center gap-1">✅ ক্যাশ অন ডেলিভারি</span>
+                <span className="flex items-center gap-1">🚚 সারা বাংলাদেশে</span>
             </div>
-            <button className="w-full bg-[#5F7161] text-white font-bold py-4 rounded-xl text-lg hover:bg-[#4E5D50] transition flex items-center justify-center gap-2">
+            <button className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-4 rounded-xl text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105">
                 👉 এখনই অর্ডার করুন <ArrowRight size={20} />
             </button>
         </div>
