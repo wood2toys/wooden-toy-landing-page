@@ -33,13 +33,10 @@ export default function Hero() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2C1810] mb-4 sm:mb-6 leading-tight tracking-tight">
           আপনার সন্তানের শৈশব হোক<br className="block sm:hidden" /> আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
         </h1>
-        <div className="mb-4">
+        <p className="text-base sm:text-lg text-[#5D4E37] mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           <span className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent">
             ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা
-          </span>
-        </div>
-        <p className="text-base sm:text-lg text-[#5D4E37] mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed font-medium">
-          সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
+          </span> সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
         {/* Product Image */}
