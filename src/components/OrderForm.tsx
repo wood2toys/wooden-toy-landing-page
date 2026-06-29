@@ -56,13 +56,22 @@ export default function OrderForm() {
               rows={3} 
               onChange={(e) => setFormData({...formData, address: e.target.value})} 
             />
-            <input 
-              type="number" 
-              min={1} 
-              defaultValue={1} 
-              className="w-full p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all" 
-              onChange={(e) => setFormData({...formData, quantity: parseInt(e.target.value)})} 
-            />
+            {/* Custom quantity field with product description */}
+            <div className="relative">
+              <label className="block text-[#8B4513] font-semibold mb-2 text-sm">পণ্যের পরিমাণ</label>
+              <div className="bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] border-2 border-[#D4AF37]/30 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-[#8B4513] font-semibold">৪৩ পিসের খেলনা ১ সেট ৳৮৯৯</span>
+                  <input 
+                    type="number" 
+                    min={1} 
+                    defaultValue={1} 
+                    className="w-16 p-2 rounded-lg border border-[#D4AF37]/50 bg-white text-[#2C1810] text-center font-bold focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all" 
+                    onChange={(e) => setFormData({...formData, quantity: parseInt(e.target.value)})} 
+                  />
+                </div>
+              </div>
+            </div>
             
             <div className="bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] p-4 rounded-2xl space-y-2 text-sm border-2 border-[#D4AF37]/30 shadow-inner">
                 <div className="flex justify-between text-[#8B4513]"><span>পণ্যের মূল্য:</span> <span className="font-semibold">৳899</span></div>
