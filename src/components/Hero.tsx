@@ -21,7 +21,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] px-4 pt-10 pb-16 text-center">
+    <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FAF5F0] to-[#F5F0E8] px-4 pt-10 pb-8 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -36,6 +36,17 @@ export default function Hero() {
         <p className="text-lg text-[#5D4E37] mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
+        
+        {/* Product Image */}
+        <div className="max-w-lg mx-auto mb-8">
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <img 
+              src="/assets/images/wooden-kitchen-set.jpg" 
+              alt="43 Piece Premium Wooden Kitchen Toy Set" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
       </motion.div>
     </section>
   );
