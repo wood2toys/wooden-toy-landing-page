@@ -9,21 +9,21 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="px-4 py-16 bg-[#FDFBF7]">
-      <h2 className="text-3xl font-bold text-center text-[#2D2424] mb-12 tracking-tight">আপনার সন্তান কি সারাদিন মোবাইলেই ব্যস্ত? 📱</h2>
-      <div className="grid gap-6">
+    <section className="px-4 py-8 sm:py-12 md:py-16 bg-[#FDFBF7]">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#2D2424] mb-8 sm:mb-10 md:mb-12 tracking-tight px-2">আপনার সন্তান কি সারাদিন মোবাইলেই ব্যস্ত? 📱</h2>
+      <div className="grid gap-4 sm:gap-5 md:gap-6">
         {problems.map((p, i) => (
           <motion.div 
             key={i}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white p-6 rounded-3xl shadow-sm border border-[#EBE3D5] flex items-start gap-4"
+            className="bg-white p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl shadow-sm border border-[#EBE3D5] flex items-start gap-3 sm:gap-4"
           >
-            <p.icon className="text-[#5F7161] shrink-0" size={32} />
+            <p.icon className="text-[#5F7161] shrink-0 mt-1" size={24} />
             <div>
-              <h3 className="font-bold text-lg mb-1 text-[#2D2424]">{p.title}</h3>
-              <p className="text-[#6D5D5D] leading-relaxed">{p.desc}</p>
+              <h3 className="font-bold text-base sm:text-lg mb-1 text-[#2D2424]">{p.title}</h3>
+              <p className="text-[#6D5D5D] leading-relaxed text-sm sm:text-base">{p.desc}</p>
             </div>
           </motion.div>
         ))}
