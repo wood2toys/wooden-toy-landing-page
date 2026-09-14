@@ -8,8 +8,9 @@ export default function OrderForm() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const quantityOptions = [
-    { value: 1, text: "২৫ পিসের ১ সেট - ৳৫৯৯", price: 599 },
-    { value: 2, text: "৫০ পিসের ঢেঁকি সহ ১ সেট - ৳১০৯৯", price: 1099 },
+    { value: 1, text: "৪৩ পিসের ১ সেট - ৳৮৯৯", price: 899 },
+    { value: 2, text: "৪৩ পিসের ২ সেট - ৳১৭৯৮", price: 1798 },
+    { value: 3, text: "৪৩ পিসের ৩ সেট - ৳২৬৯৭", price: 2697 },
   ];
 
   const selectedOption = quantityOptions.find(opt => opt.value === selectedQuantity);

@@ -35,7 +35,7 @@ export default function Hero() {
         </h1>
         <p className="text-base sm:text-lg text-[#5D4E37] mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed font-medium">
           <span className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent">
-            ২৫ ও ৫০ পিসের প্রিমিয়াম কাঠের খেলনা
+            ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা
           </span> সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
@@ -43,33 +43,13 @@ export default function Hero() {
         <div className="max-w-lg mx-auto mb-8">
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
             <img 
-              src="/wooden-kitchen-set-50-pieces.jpg"
-              alt="50 Piece Premium Wooden Kitchen Toy Set" 
+              src="/wooden-kitchen-set.jpg"
+              alt="43 Piece Premium Wooden Kitchen Toy Set" 
               className="w-full h-auto object-cover"
             />
             {/* Price Badge on Image */}
             <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-              ঢেঁকি সহ: ৳১০৯৯
-            </div>
-          </div>
-          
-          {/* 25 Piece Set Box */}
-          <div className="mt-4 bg-gradient-to-br from-white to-[#FFFEF7] p-4 rounded-2xl shadow-lg border-2 border-[#D4AF37]/30">
-            <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-xl overflow-hidden shadow-md flex-shrink-0">
-                <img 
-                  src="/wooden-kitchen-set.jpg"
-                  alt="25 Piece Wooden Kitchen Set"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-[#2C1810] mb-1">২৫ পিসের সেট</h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#8B4513] line-through text-sm">৳৮০০</span>
-                  <span className="text-xl font-bold text-[#D4AF37]">৳৫৯৯</span>
-                </div>
-              </div>
+              অফার প্রাইস: ৳৮৯৯
             </div>
           </div>
           
