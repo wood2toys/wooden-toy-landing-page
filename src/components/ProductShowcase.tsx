@@ -17,7 +17,7 @@ export default function ProductShowcase() {
           {/* Product Image */}
           <div className="mb-6">
             <img 
-              src="/assets/images/wooden-kitchen-set.jpg" 
+              src="/wooden-kitchen-set.jpg" 
               alt="" 
               className="w-full h-auto object-cover rounded-2xl shadow-lg"
             />
