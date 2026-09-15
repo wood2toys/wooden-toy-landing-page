@@ -71,65 +71,65 @@ export default function OrderForm() {
   };
 
   return (
-    <section id="order-form" className="px-2 sm:px-4 py-6 sm:py-8 md:py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
+    <section id="order-form" className="px-2 sm:px-4 py-4 sm:py-6 md:py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C1810] mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
-          <p className="text-base sm:text-lg text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
+        <div className="text-center mb-4 sm:mb-6 md:mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C1810] mb-2 sm:mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
+          <p className="text-sm sm:text-base md:text-lg text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
         </div>
         
-        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-6 rounded-3xl shadow-2xl border-2 border-[#D4AF37]/30">
-          <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-2xl border-2 border-[#D4AF37]/30">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-5">
             <div>
-              <label className="block text-[#8B4513] font-semibold mb-2 text-sm sm:text-base">নাম</label>
+              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">নাম</label>
               <input 
                 required 
                 type="text" 
                 placeholder="আপনার নাম লিখুন" 
-                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
+                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
                 onChange={(e) => setFormData({...formData, name: e.target.value})} 
               />
             </div>
             <div>
-              <label className="block text-[#8B4513] font-semibold mb-2 text-sm sm:text-base">মোবাইল নম্বর</label>
+              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">মোবাইল নম্বর</label>
               <input 
                 required 
                 type="tel" 
                 placeholder="আপনার মোবাইল নম্বর লিখুন" 
-                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
+                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
                 onChange={(e) => setFormData({...formData, phone: e.target.value})} 
               />
             </div>
             <div>
-              <label className="block text-[#8B4513] font-semibold mb-2 text-sm sm:text-base">ঠিকানা</label>
+              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">ঠিকানা</label>
               <textarea 
                 required 
                 placeholder="গ্রাম, থানা, জেলা লিখুন" 
-                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
-                rows={3} 
+                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
+                rows={2} 
                 onChange={(e) => setFormData({...formData, address: e.target.value})} 
               />
             </div>
             
             {/* Quantity Dropdown */}
             <div className="relative">
-              <label className="block text-[#8B4513] font-semibold mb-2">পরিমাণ (সেট)</label>
+              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">পরিমাণ (সেট)</label>
               <div 
-                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center"
+                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center"
                 onClick={() => setShowDropdown(!showDropdown)}
               >
-                <span className="text-base sm:text-lg">{selectedOption.text}</span>
-                <svg className={`w-5 h-5 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="text-sm sm:text-base">{selectedOption.text}</span>
+                <svg className={`w-4 h-4 sm:w-5 sm:h-5 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </div>
               
               {showDropdown && (
-                <div className="absolute top-full left-0 right-0 bg-white border-2 border-[#D4AF37]/20 rounded-xl mt-1 shadow-lg z-10">
+                <div className="absolute top-full left-0 right-0 bg-white border-2 border-[#D4AF37]/20 rounded-lg sm:rounded-xl mt-1 shadow-lg z-10">
                   {quantityOptions.map((option) => (
                     <div
                       key={option.value}
-                      className={`p-4 cursor-pointer hover:bg-[#FFF8DC] transition-colors ${
+                      className={`p-2 sm:p-3 md:p-4 cursor-pointer hover:bg-[#FFF8DC] transition-colors text-sm sm:text-base ${
                         selectedQuantity === option.value ? 'bg-blue-500 text-white' : 'text-[#2C1810]'
                       }`}
                       onClick={() => {
@@ -145,16 +145,16 @@ export default function OrderForm() {
               )}
             </div>
             
-            <div className="bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] p-4 rounded-2xl space-y-2 text-sm border-2 border-[#D4AF37]/30 shadow-inner">
+            <div className="bg-gradient-to-r from-[#FFF8DC] to-[#FFFACD] p-3 sm:p-4 rounded-xl sm:rounded-2xl space-y-1 sm:space-y-2 text-xs sm:text-sm border-2 border-[#D4AF37]/30 shadow-inner">
                 <div className="flex justify-between text-[#8B4513]"><span>পণ্যের মূল্য:</span> <span className="font-semibold">৳{selectedOption.price}</span></div>
                 <div className="flex justify-between text-[#8B4513]"><span>ডেলিভারি চার্জ:</span> <span className="font-semibold">৳100</span></div>
                 <hr className="border-[#D4AF37]/50"/>
-                <div className="flex justify-between font-bold text-lg text-[#8B4513]"><span>সর্বমোট:</span> <span>৳{totalPrice}</span></div>
+                <div className="flex justify-between font-bold text-sm sm:text-base md:text-lg text-[#8B4513]"><span>সর্বমোট:</span> <span>৳{totalPrice}</span></div>
             </div>
             
             <button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-3 sm:py-4 rounded-xl text-lg sm:text-xl hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-[#D4AF37]"
+              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-3 sm:py-4 rounded-lg sm:rounded-xl text-base sm:text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-[#D4AF37]"
             >
                 ✅ অর্ডার কনফার্ম করুন
             </button>
