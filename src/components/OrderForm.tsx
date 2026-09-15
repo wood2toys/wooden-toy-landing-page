@@ -74,62 +74,62 @@ export default function OrderForm() {
     <section id="order-form" className="px-2 sm:px-4 py-4 sm:py-6 md:py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
         <div className="text-center mb-4 sm:mb-6 md:mb-8">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C1810] mb-2 sm:mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
-          <p className="text-sm sm:text-base md:text-lg text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C1810] mb-2 sm:mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
         </div>
         
         <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-2xl border-2 border-[#D4AF37]/30">
           <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-5">
             <div>
-              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">নাম</label>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-base sm:text-lg">নাম</label>
               <input 
                 required 
                 type="text" 
                 placeholder="আপনার নাম লিখুন" 
-                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
+                className="w-full p-4 sm:p-5 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
                 onChange={(e) => setFormData({...formData, name: e.target.value})} 
               />
             </div>
             <div>
-              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">মোবাইল নম্বর</label>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-base sm:text-lg">মোবাইল নম্বর</label>
               <input 
                 required 
                 type="tel" 
                 placeholder="আপনার মোবাইল নম্বর লিখুন" 
-                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
+                className="w-full p-4 sm:p-5 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
                 onChange={(e) => setFormData({...formData, phone: e.target.value})} 
               />
             </div>
             <div>
-              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">ঠিকানা</label>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-base sm:text-lg">ঠিকানা</label>
               <textarea 
                 required 
                 placeholder="গ্রাম, থানা, জেলা লিখুন" 
-                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
-                rows={2} 
+                className="w-full p-4 sm:p-5 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
+                rows={3} 
                 onChange={(e) => setFormData({...formData, address: e.target.value})} 
               />
             </div>
             
             {/* Quantity Dropdown */}
             <div className="relative">
-              <label className="block text-[#8B4513] font-semibold mb-1 sm:mb-2 text-sm">পরিমাণ (সেট)</label>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-base sm:text-lg">পরিমাণ (সেট)</label>
               <div 
-                className="w-full p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center"
+                className="w-full p-4 sm:p-5 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center"
                 onClick={() => setShowDropdown(!showDropdown)}
               >
-                <span className="text-sm sm:text-base">{selectedOption.text}</span>
-                <svg className={`w-4 h-4 sm:w-5 sm:h-5 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="text-base sm:text-lg">{selectedOption.text}</span>
+                <svg className={`w-5 h-5 sm:w-6 sm:h-6 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </div>
               
               {showDropdown && (
-                <div className="absolute top-full left-0 right-0 bg-white border-2 border-[#D4AF37]/20 rounded-lg sm:rounded-xl mt-1 shadow-lg z-10">
+                <div className="absolute top-full left-0 right-0 bg-white border-2 border-[#D4AF37]/20 rounded-xl mt-1 shadow-lg z-10">
                   {quantityOptions.map((option) => (
                     <div
                       key={option.value}
-                      className={`p-2 sm:p-3 md:p-4 cursor-pointer hover:bg-[#FFF8DC] transition-colors text-sm sm:text-base ${
+                      className={`p-4 sm:p-5 cursor-pointer hover:bg-[#FFF8DC] transition-colors text-base sm:text-lg ${
                         selectedQuantity === option.value ? 'bg-blue-500 text-white' : 'text-[#2C1810]'
                       }`}
                       onClick={() => {
