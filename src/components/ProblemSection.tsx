@@ -22,8 +22,8 @@ export default function ProblemSection() {
           >
             <p.icon className="text-[#5F7161] shrink-0 mt-1" size={24} />
             <div>
-              <h3 className="font-bold text-base sm:text-lg mb-1 text-[#2D2424]">{p.title}</h3>
-              <p className="text-[#6D5D5D] leading-relaxed text-sm sm:text-base">{p.desc}</p>
+              <h3 className="font-bold text-lg sm:text-xl mb-1 text-[#2D2424]">{p.title}</h3>
+              <p className="text-[#6D5D5D] leading-relaxed text-base sm:text-lg">{p.desc}</p>
             </div>
           </motion.div>
         ))}

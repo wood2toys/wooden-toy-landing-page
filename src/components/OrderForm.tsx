@@ -71,11 +71,11 @@ export default function OrderForm() {
   };
 
   return (
-    <section id="order-form" className="px-4 py-8 sm:py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
-      <div className="max-w-sm sm:max-w-md mx-auto">
+    <section id="order-form" className="px-2 sm:px-4 py-6 sm:py-8 md:py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
+      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#2C1810] mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
-          <p className="text-sm sm:text-base text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C1810] mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
+          <p className="text-base sm:text-lg text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
         </div>
         
         <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-6 rounded-3xl shadow-2xl border-2 border-[#D4AF37]/30">
@@ -84,20 +84,20 @@ export default function OrderForm() {
               required 
               type="text" 
               placeholder="আপনার নাম লিখুন" 
-              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
+              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
               onChange={(e) => setFormData({...formData, name: e.target.value})} 
             />
             <input 
               required 
               type="tel" 
               placeholder="আপনার মোবাইল নম্বর লিখুন" 
-              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
+              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
               onChange={(e) => setFormData({...formData, phone: e.target.value})} 
             />
             <textarea 
               required 
               placeholder="গ্রাম, থানা, জেলা লিখুন" 
-              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-sm sm:text-base" 
+              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
               rows={3} 
               onChange={(e) => setFormData({...formData, address: e.target.value})} 
             />
@@ -109,7 +109,7 @@ export default function OrderForm() {
                 className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center"
                 onClick={() => setShowDropdown(!showDropdown)}
               >
-                <span className="text-sm sm:text-base">{selectedOption.text}</span>
+                <span className="text-base sm:text-lg">{selectedOption.text}</span>
                 <svg className={`w-5 h-5 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
@@ -145,7 +145,7 @@ export default function OrderForm() {
             
             <button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-3 sm:py-4 rounded-xl text-base sm:text-lg hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-[#D4AF37]"
+              className="w-full bg-gradient-to-r from-[#8B4513] to-[#A0522D] text-white font-bold py-3 sm:py-4 rounded-xl text-lg sm:text-xl hover:from-[#A0522D] hover:to-[#8B4513] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-[#D4AF37]"
             >
                 ✅ অর্ডার কনফার্ম করুন
             </button>
