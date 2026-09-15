@@ -74,33 +74,42 @@ export default function OrderForm() {
     <section id="order-form" className="px-2 sm:px-4 py-6 sm:py-8 md:py-16 bg-gradient-to-br from-[#F5F0E8] to-[#FAF5F0] border-t-2 border-[#D4AF37]">
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C1810] mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C1810] mb-4 tracking-tight">অর্ডার কনফার্ম করতে নিচের ফর্মটি পূরণ করুন</h2>
           <p className="text-base sm:text-lg text-[#5D4E37] font-medium">আপনার সঠিক তথ্য দিয়ে আমাদের সাহায্য করুন।</p>
         </div>
         
         <div className="bg-gradient-to-br from-white to-[#FFFEF7] p-6 rounded-3xl shadow-2xl border-2 border-[#D4AF37]/30">
           <form onSubmit={handleSubmit} className="space-y-5">
-            <input 
-              required 
-              type="text" 
-              placeholder="আপনার নাম লিখুন" 
-              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
-              onChange={(e) => setFormData({...formData, name: e.target.value})} 
-            />
-            <input 
-              required 
-              type="tel" 
-              placeholder="আপনার মোবাইল নম্বর লিখুন" 
-              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
-              onChange={(e) => setFormData({...formData, phone: e.target.value})} 
-            />
-            <textarea 
-              required 
-              placeholder="গ্রাম, থানা, জেলা লিখুন" 
-              className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
-              rows={3} 
-              onChange={(e) => setFormData({...formData, address: e.target.value})} 
-            />
+            <div>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-sm sm:text-base">নাম</label>
+              <input 
+                required 
+                type="text" 
+                placeholder="আপনার নাম লিখুন" 
+                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
+                onChange={(e) => setFormData({...formData, name: e.target.value})} 
+              />
+            </div>
+            <div>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-sm sm:text-base">মোবাইল নম্বর</label>
+              <input 
+                required 
+                type="tel" 
+                placeholder="আপনার মোবাইল নম্বর লিখুন" 
+                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
+                onChange={(e) => setFormData({...formData, phone: e.target.value})} 
+              />
+            </div>
+            <div>
+              <label className="block text-[#8B4513] font-semibold mb-2 text-sm sm:text-base">ঠিকানা</label>
+              <textarea 
+                required 
+                placeholder="গ্রাম, থানা, জেলা লিখুন" 
+                className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" 
+                rows={3} 
+                onChange={(e) => setFormData({...formData, address: e.target.value})} 
+              />
+            </div>
             
             {/* Quantity Dropdown */}
             <div className="relative">
