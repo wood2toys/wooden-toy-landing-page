@@ -364,9 +364,37 @@
             <button class="action-btn success" onclick="exportOrders()">
                 📊 এক্সপোর্ট
             </button>
+            <button class="action-btn warning" onclick="showImageUpload()">
+                🖼️ ছবি আপলোড
+            </button>
             <button class="action-btn warning" onclick="clearOldOrders()">
                 🗑️ পুরাতন অর্ডার
             </button>
+        </div>
+        
+        <!-- Image Upload Modal -->
+        <div id="imageUploadModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 16px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+                <h3 style="margin-bottom: 20px; color: #1e293b;">Hero Image Management</h3>
+                
+                <!-- Upload Section -->
+                <div style="border: 2px dashed #e2e8f0; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h4 style="margin-bottom: 15px;">নতুন ছবি আপলোড করুন</h4>
+                    <input type="file" id="imageFile" accept="image/*" style="margin-bottom: 15px; width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <input type="text" id="imageDescription" placeholder="ছবির বিবরণ (ঐচ্ছিক)" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 15px;">
+                    <button onclick="uploadImage()" style="background: #3b82f6; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%;">আপলোড করুন</button>
+                </div>
+                
+                <!-- Existing Images -->
+                <div>
+                    <h4 style="margin-bottom: 15px;">আপলোড করা ছবিসমূহ</h4>
+                    <div id="imageGallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                        <!-- Images will be loaded here -->
+                    </div>
+                </div>
+                
+                <button onclick="closeImageUpload()" style="background: #64748b; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%;">বন্ধ করুন</button>
+            </div>
         </div>
         
         <div class="stats">
@@ -549,6 +577,91 @@
         
         function clearOldOrders() {
             alert('এই ফিচারটি শীঘ্রই আসবে');
+        }
+
+        // Image Upload Functions
+        function showImageUpload() {
+            document.getElementById('imageUploadModal').style.display = 'block';
+            loadImageGallery();
+        }
+
+        function closeImageUpload() {
+            document.getElementById('imageUploadModal').style.display = 'none';
+            document.getElementById('imageFile').value = '';
+            document.getElementById('imageDescription').value = '';
+        }
+
+        async function loadImageGallery() {
+            try {
+                const response = await fetch(`${API_URL}/images`);
+                const data = await response.json();
+                
+                const gallery = document.getElementById('imageGallery');
+                
+                if (data.success && data.images.length > 0) {
+                    gallery.innerHTML = data.images.map(image => `
+                        <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; background: white;">
+                            <img src="${API_URL.replace('/api', '')}${image.url}" alt="Uploaded image" style="width: 100%; height: 120px; object-fit: cover;">
+                            <div style="padding: 10px;">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">
+                                    ${new Date(image.uploadDate).toLocaleDateString('bn-BD')}
+                                </div>
+                                <button onclick="copyImageUrl('${API_URL.replace('/api', '')}${image.url}')" style="background: #10b981; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; width: 100%;">
+                                    URL কপি করুন
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    gallery.innerHTML = '<div style="text-align: center; color: #64748b; grid-column: 1 / -1;">এখনো কোন ছবি আপলোড করা হয়নি</div>';
+                }
+            } catch (error) {
+                console.error('Failed to load images:', error);
+                document.getElementById('imageGallery').innerHTML = '<div style="text-align: center; color: #ef4444; grid-column: 1 / -1;">ছবি লোড করতে সমস্যা</div>';
+            }
+        }
+
+        function copyImageUrl(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Image URL কপি হয়েছে! এখন Hero component এ ব্যবহার করতে পারেন।');
+            }).catch(() => {
+                prompt('এই URL টি কপি করুন:', url);
+            });
+        }
+
+        async function uploadImage() {
+            const fileInput = document.getElementById('imageFile');
+            const description = document.getElementById('imageDescription').value;
+            
+            if (!fileInput.files[0]) {
+                alert('দয়া করে একটি ছবি নির্বাচন করুন');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', fileInput.files[0]);
+            formData.append('description', description);
+
+            try {
+                const response = await fetch(`${API_URL}/upload-image`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('ছবি সফলভাবে আপলোড হয়েছে!');
+                    document.getElementById('imageFile').value = '';
+                    document.getElementById('imageDescription').value = '';
+                    loadImageGallery(); // Reload gallery
+                } else {
+                    alert('ছবি আপলোড করতে সমস্যা: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('ছবি আপলোড করতে সমস্যা হয়েছে');
+                console.error('Upload error:', error);
+            }
         }
     </script>
 </body>
