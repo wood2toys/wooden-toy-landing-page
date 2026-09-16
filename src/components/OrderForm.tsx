@@ -57,11 +57,11 @@ export default function OrderForm() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <input required type="text" placeholder="আপনার নাম লিখুন" className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" onChange={(e) => setFormData({...formData, name: e.target.value})} />
             <input required type="tel" placeholder="আপনার মোবাইল নম্বর লিখুন" className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" onChange={(e) => setFormData({...formData, phone: e.target.value})} />
-            <textarea required placeholder="গ্রাম, থানা, জেলা লিখুন" className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg" rows={3} onChange={(e) => setFormData({...formData, address: e.target.value})} />
+            <textarea required placeholder="গ্রাম, থানা, জেলা লিখুন" className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] placeholder-[#8B4513] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] transition-all text-base sm:text-lg resize-none" rows={2} onChange={(e) => setFormData({...formData, address: e.target.value})} />
             <div className="relative">
               <label className="block text-[#8B4513] font-semibold mb-2">পরিমাণ (সেট)</label>
               <div className="w-full p-3 sm:p-4 rounded-xl border-2 border-[#D4AF37]/20 bg-gradient-to-r from-white to-[#FFFEF7] text-[#2C1810] cursor-pointer flex justify-between items-center" onClick={() => setShowDropdown(!showDropdown)}>
-                <span className="text-base sm:text-lg">{selectedOption.text}</span>
+                <span className="text-sm sm:text-base truncate pr-2">{selectedOption.text}</span>
                 <svg className={`w-5 h-5 transform transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
               </div>
               {showDropdown && (
