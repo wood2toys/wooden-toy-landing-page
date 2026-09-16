@@ -1,6 +1,8 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { trackLead, trackInitiateCheckout, trackPurchase } from "../utils/facebook-pixel";
+
+const BACKEND_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://web-production-5ecb3.up.railway.app';
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({ name: "", phone: "", address: "", quantity: 1 });

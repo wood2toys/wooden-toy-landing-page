@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { trackViewContent, trackAddToCart } from "../utils/facebook-pixel";
 
+const BACKEND_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://web-production-5ecb3.up.railway.app';
+
 export default function Hero() {
   const [heroImage, setHeroImage] = useState("/wooden-kitchen-set.jpg");
   const [price, setPrice] = useState(999);
@@ -25,7 +27,7 @@ export default function Hero() {
 
   const fetchPrice = async () => {
     try {
-      const response = await fetch('/api/price');
+      const response = await fetch(`${BACKEND_URL}/api/price`);
       const data = await response.json();
       if (data.success) {
         setPrice(data.price);
@@ -38,10 +40,10 @@ export default function Hero() {
 
   const fetchLatestHeroImage = async () => {
     try {
-      const response = await fetch('/api/images');
+      const response = await fetch(`${BACKEND_URL}/api/images`);
       const data = await response.json();
       if (data.success && data.images.length > 0) {
-        setHeroImage(data.images[0].url);
+        setHeroImage(`${BACKEND_URL}${data.images[0].url}`);
       }
     } catch (error) {
       console.log('Using default image');
