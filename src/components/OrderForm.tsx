@@ -23,7 +23,7 @@ export default function OrderForm() {
     trackInitiateCheckout(totalPrice);
   }, [totalPrice]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Track Lead event when form is submitted
