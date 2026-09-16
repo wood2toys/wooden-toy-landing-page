@@ -59,16 +59,16 @@ export default function OrderForm() {
       if (response.ok) {
         console.log("Order saved successfully to Vercel backend:", orderData);
         // Redirect to thank you page
-        window.location.href = '/thank-you';
+        window.location.href = '/thank-you?product=' + encodeURIComponent(productName) + '&price=' + selectedOption.price + '&delivery=' + deliveryCharge + '&total=' + totalPrice;
       } else {
         // If API fails, still redirect (user experience first)
         console.log("Vercel API failed, but proceeding:", orderData);
-        window.location.href = '/thank-you';
+        window.location.href = '/thank-you?product=' + encodeURIComponent(productName) + '&price=' + selectedOption.price + '&delivery=' + deliveryCharge + '&total=' + totalPrice;
       }
     } catch (error) {
       // If network error, still redirect (user experience first)  
       console.log("Network error with Vercel backend, but proceeding:", orderData);
-      window.location.href = '/thank-you';
+      window.location.href = '/thank-you?product=' + encodeURIComponent(productName) + '&price=' + selectedOption.price + '&delivery=' + deliveryCharge + '&total=' + totalPrice;
     }
   };
 
