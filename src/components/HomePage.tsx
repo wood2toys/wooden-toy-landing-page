@@ -32,13 +32,43 @@ export default function HomePage() {
 
   const handleStickyOrderClick = () => {
     // Track AddToCart when sticky button is clicked
-    trackAddToCart("43 Piece Premium Wooden Kitchen Toy Set", 899);
+    trackAddToCart("48 Piece Premium Mahogany Wooden Kitchen Toy Set with Free Dheki", 899);
     
     // Scroll to order form
     const orderForm = document.getElementById('order-form');
     if (orderForm) {
       orderForm.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('description', 'Hero image uploaded from website');
+
+    try {
+      const response = await fetch('/api/upload-image', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('ছবি সফলভাবে আপলোড হয়েছে! পেজ রিলোড হবে।');
+        window.location.reload(); // Reload to show new image
+      } else {
+        alert('ছবি আপলোড করতে সমস্যা হয়েছে');
+      }
+    } catch (error) {
+      alert('ছবি আপলোড করতে সমস্যা হয়েছে');
+    }
+
+    // Clear input
+    event.target.value = '';
   };
 
   return (

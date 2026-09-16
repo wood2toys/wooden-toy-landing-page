@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { trackLead, trackInitiateCheckout, trackPurchase } from "../utils/facebook-pixel";
 
@@ -8,9 +8,9 @@ export default function OrderForm() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const quantityOptions = [
-    { value: 1, text: "৪৩ পিসের ১ সেট - ৳৮৯৯", price: 899 },
-    { value: 2, text: "৪৩ পিসের ২ সেট - ৳১৭৯৮", price: 1798 },
-    { value: 3, text: "৪৩ পিসের ৩ সেট - ৳২৬৯৭", price: 2697 },
+    { value: 1, text: "৪৮ পিসের ১ সেট + ফ্রি ঢেঁকি - ৳৯৯৯", price: 999 },
+    { value: 2, text: "৪৮ পিসের ২ সেট + ২টি ফ্রি ঢেঁকি - ৳১৯৯৮", price: 1998 },
+    { value: 3, text: "৪৮ পিসের ৩ সেট + ৩টি ফ্রি ঢেঁকি - ৳২৯৯৭", price: 2997 },
   ];
 
   const selectedOption = quantityOptions.find(opt => opt.value === selectedQuantity);
@@ -156,3 +156,5 @@ export default function OrderForm() {
     </section>
   );
 }
+
+

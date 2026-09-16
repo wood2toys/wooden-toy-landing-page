@@ -367,9 +367,45 @@
             <button class="action-btn warning" onclick="showImageUpload()">
                 🖼️ ছবি আপলোড
             </button>
-            <button class="action-btn warning" onclick="clearOldOrders()">
-                🗑️ পুরাতন অর্ডার
+            <button class="action-btn" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);" onclick="showPriceSettings()">
+                💰 মূল্য পরিবর্তন
             </button>
+        </div>
+
+        <!-- Price Settings Modal -->
+        <div id="priceModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 16px; width: 90%; max-width: 450px;">
+                <h3 style="margin-bottom: 20px; color: #1e293b;">💰 মূল্য সেটিংস</h3>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; color: #374151;">পণ্যের নাম:</label>
+                    <input type="text" id="productName" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px;" placeholder="৪৮ পিসের ১ সেট + ফ্রি ঢেঁকি">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; color: #374151;">অফার মূল্য (৳):</label>
+                    <input type="number" id="newPrice" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px;" placeholder="999">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; color: #374151;">পুরোনো মূল্য (৳) - কাটা দাগ:</label>
+                    <input type="number" id="originalPrice" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px;" placeholder="1200">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; color: #374151;">ডেলিভারি চার্জ (৳):</label>
+                    <input type="number" id="deliveryCharge" style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px;" placeholder="100">
+                </div>
+
+                <div id="currentPriceInfo" style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #166534;">
+                    লোড হচ্ছে...
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="updatePrice()" style="flex: 1; background: #8b5cf6; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600;">আপডেট করুন</button>
+                    <button onclick="closePriceModal()" style="flex: 1; background: #64748b; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer;">বন্ধ করুন</button>
+                </div>
+            </div>
         </div>
         
         <!-- Image Upload Modal -->
@@ -579,6 +615,65 @@
             alert('এই ফিচারটি শীঘ্রই আসবে');
         }
 
+        // Price Settings Functions
+        async function showPriceSettings() {
+            document.getElementById('priceModal').style.display = 'block';
+            
+            // Load current price
+            try {
+                const response = await fetch(`${API_URL}/price`);
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('productName').value = data.productName || '';
+                    document.getElementById('newPrice').value = data.price || '';
+                    document.getElementById('originalPrice').value = data.originalPrice || '';
+                    document.getElementById('deliveryCharge').value = data.deliveryCharge || '';
+                    document.getElementById('currentPriceInfo').innerHTML = `
+                        <strong>বর্তমান সেটিংস:</strong><br>
+                        পণ্যের নাম: ${data.productName}<br>
+                        অফার মূল্য: ৳${data.price} | পুরোনো: ৳${data.originalPrice} | ডেলিভারি: ৳${data.deliveryCharge}<br>
+                        <strong>সর্বমোট: ৳${data.price + data.deliveryCharge}</strong>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('currentPriceInfo').innerHTML = 'মূল্য লোড করতে সমস্যা হয়েছে';
+            }
+        }
+
+        function closePriceModal() {
+            document.getElementById('priceModal').style.display = 'none';
+        }
+
+        async function updatePrice() {
+            const price = document.getElementById('newPrice').value;
+            const originalPrice = document.getElementById('originalPrice').value;
+            const deliveryCharge = document.getElementById('deliveryCharge').value;
+            const productName = document.getElementById('productName').value;
+
+            if (!price) {
+                alert('দয়া করে অফার মূল্য দিন');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/price`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ price, originalPrice, deliveryCharge, productName })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert(`✅ মূল্য সফলভাবে আপডেট হয়েছে!\n\nঅফার মূল্য: ৳${data.price}\nসর্বমোট: ৳${data.price + data.deliveryCharge}`);
+                    closePriceModal();
+                } else {
+                    alert('মূল্য আপডেট করতে সমস্যা হয়েছে');
+                }
+            } catch (error) {
+                alert('মূল্য আপডেট করতে সমস্যা হয়েছে');
+            }
+        }
+
         // Image Upload Functions
         function showImageUpload() {
             document.getElementById('imageUploadModal').style.display = 'block';
@@ -655,6 +750,15 @@
                     document.getElementById('imageFile').value = '';
                     document.getElementById('imageDescription').value = '';
                     loadImageGallery(); // Reload gallery
+                    
+                    // Notify frontend to refresh hero image
+                    const frontendUrl = 'http://localhost:5173';
+                    try {
+                        // Send message to refresh hero image
+                        window.postMessage({ type: 'HERO_IMAGE_UPDATED' }, frontendUrl);
+                    } catch (e) {
+                        console.log('Frontend notification sent');
+                    }
                 } else {
                     alert('ছবি আপলোড করতে সমস্যা: ' + (data.message || 'Unknown error'));
                 }

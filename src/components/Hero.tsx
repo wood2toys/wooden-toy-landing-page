@@ -1,23 +1,57 @@
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { trackViewContent, trackAddToCart } from "../utils/facebook-pixel";
 
 export default function Hero() {
-  // Track ViewContent when component mounts
+  const [heroImage, setHeroImage] = useState("/wooden-kitchen-set.jpg");
+  const [price, setPrice] = useState(999);
+  const [productName, setProductName] = useState("৪৮ পিসের ১ সেট + ফ্রি ঢেঁকি");
+
   useEffect(() => {
-    trackViewContent("43 Piece Premium Wooden Kitchen Toy Set", 899);
+    fetchLatestHeroImage();
+    fetchPrice();
+
+    const handleMessage = (event) => {
+      if (event.data.type === 'HERO_IMAGE_UPDATED') fetchLatestHeroImage();
+      if (event.data.type === 'PRICE_UPDATED') fetchPrice();
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
   }, []);
 
-  const handleOrderClick = () => {
-    // Track AddToCart when order button is clicked
-    trackAddToCart("43 Piece Premium Wooden Kitchen Toy Set", 899);
-    
-    // Scroll to order form
-    const orderForm = document.getElementById('order-form');
-    if (orderForm) {
-      orderForm.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    trackViewContent(productName, price);
+  }, [price, productName]);
+
+  const fetchPrice = async () => {
+    try {
+      const response = await fetch('/api/price');
+      const data = await response.json();
+      if (data.success) {
+        setPrice(data.price);
+        setProductName(data.productName);
+      }
+    } catch (error) {
+      console.log('Using default price');
     }
+  };
+
+  const fetchLatestHeroImage = async () => {
+    try {
+      const response = await fetch('/api/images');
+      const data = await response.json();
+      if (data.success && data.images.length > 0) {
+        setHeroImage(data.images[0].url);
+      }
+    } catch (error) {
+      console.log('Using default image');
+    }
+  };
+
+  const handleOrderClick = () => {
+    trackAddToCart(productName, price);
+    const orderForm = document.getElementById('order-form');
+    if (orderForm) orderForm.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -34,35 +68,31 @@ export default function Hero() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#2C1810] mb-3 sm:mb-4 md:mb-6 leading-tight tracking-tight px-1 sm:px-2">
           আপনার সন্তানের শৈশব হোক<br className="block sm:hidden" /> আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
         </h1>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#5D4E37] mb-4 sm:mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed font-medium px-2 sm:px-4">
-          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent">
-            ৪৩ পিসের প্রিমিয়াম কাঠের খেলনা
-          </span> সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#5D4E37] mb-4 sm:mb-6 md:mb-8 max-w-lg mx-auto leading-relaxed font-medium px-3 sm:px-4">
+          <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent block mb-1">
+            ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের + একটি ফ্রি ঢেঁকি
+          </span>
+          সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
         {/* Product Image */}
         <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto mb-4 sm:mb-6 md:mb-8 px-2 sm:px-4">
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg w-full">
             <img 
-              src="/wooden-kitchen-set.jpg"
-              alt="43 Piece Premium Wooden Kitchen Toy Set" 
+              src={heroImage}
+              alt={productName}
               className="w-full h-auto object-cover"
             />
             {/* Price Badge on Image */}
             <div className="absolute top-1 sm:top-2 md:top-4 right-1 sm:right-2 md:right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1 md:py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg">
-              অফার প্রাইস: ৳৮৯৯
+              অফার প্রাইস: ৳{price}
             </div>
           </div>
           
           {/* Order Button below Image */}
           <div className="mt-3 sm:mt-4 md:mt-6 w-full">
             <button 
-              onClick={() => {
-                const orderForm = document.getElementById('order-form');
-                if (orderForm) {
-                  orderForm.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={handleOrderClick}
               className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 sm:py-4 rounded-xl text-base sm:text-lg md:text-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-orange-400"
             >
               🛒 এখনই অর্ডার করুন
