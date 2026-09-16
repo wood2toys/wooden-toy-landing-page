@@ -68,12 +68,9 @@ export default function Hero() {
           ✨ Premium Wooden Toy Collection
         </span>
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#2C1810] mb-3 sm:mb-4 md:mb-6 leading-tight tracking-tight px-1 sm:px-2">
-          আপনার সন্তানের শৈশব হোক<br className="block sm:hidden" /> আরও আনন্দময় ও সৃজনশীল! 👯‍♀️
+          ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের + একটি ফ্রি ঢেঁকি
         </h1>
         <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#5D4E37] mb-4 sm:mb-6 md:mb-8 max-w-lg mx-auto leading-relaxed font-medium px-3 sm:px-4">
-          <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent block mb-1">
-            ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের + একটি ফ্রি ঢেঁকি
-          </span>
           সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
         
