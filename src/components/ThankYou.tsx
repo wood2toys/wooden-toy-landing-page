@@ -118,16 +118,16 @@ export default function ThankYou() {
             fontSize: '12px',
             color: '#5D4E37'
           }}>
-            <div>📦 পণ্য: {new URLSearchParams(window.location.search).get('product') || 'ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের খেলনা সেট + ফ্রি ঢেঁকি'}</div>
-            <div>💰 মূল্য: ৳{new URLSearchParams(window.location.search).get('price') || '৯৯৯'}</div>
-            <div>🚚 ডেলিভারি চার্জ: ৳{new URLSearchParams(window.location.search).get('delivery') || '১০০'}</div>
+            <div>📦 পণ্য: ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের খেলনা সেট + ফ্রি ঢেঁকি</div>
+            <div>💰 মূল্য: ৳৯৯৯</div>
+            <div>🚚 ডেলিভারি চার্জ: ৳১০০</div>
             <div style={{
               fontWeight: 'bold',
               borderTop: '1px solid #D4AF37',
               paddingTop: '4px',
               marginTop: '4px'
             }}>
-              সর্বমোট: ৳{new URLSearchParams(window.location.search).get('total') || '১০৯৯'}
+              সর্বমোট: ৳১০৯৯
             </div>
           </div>
         </div>
