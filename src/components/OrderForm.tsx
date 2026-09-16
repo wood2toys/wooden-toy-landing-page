@@ -48,7 +48,7 @@ export default function OrderForm() {
 
     try {
       // Send order to your Railway backend
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
+      const response = await fetch(`${BACKEND_URL}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
