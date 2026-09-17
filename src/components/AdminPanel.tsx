@@ -82,7 +82,7 @@ export default function AdminPanel() {
 
   function copyOrder(order: any) {
     const text = `নাম: ${order.customerName}\nফোন: ${order.phoneNumber}\nঠিকানা: ${order.address}\nপরিমাণ: ${order.quantity} সেট\nমোট: ৳${order.totalAmount}`;
-    navigator.clipboard.writeText(text).then(() => alert('কপি হয়েছে!'));
+    navigator.clipboard.writeText(text);
   }
 
   async function uploadImage(e: any) {
