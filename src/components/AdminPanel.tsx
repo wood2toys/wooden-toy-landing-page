@@ -30,6 +30,8 @@ export default function AdminPanel() {
 
   useEffect(() => { loadOrders(); loadImages(); loadPrice(); }, []);
 
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
   async function loadOrders() {
     try {
       const res = await fetch(`${API}/orders`);
@@ -83,6 +85,8 @@ export default function AdminPanel() {
   function copyOrder(order: any) {
     const text = `নাম: ${order.customerName}\nফোন: ${order.phoneNumber}\nঠিকানা: ${order.address}\nপরিমাণ: ${order.quantity} সেট\nমোট: ৳${order.totalAmount}`;
     navigator.clipboard.writeText(text);
+    setCopiedId(order.id);
+    setTimeout(() => setCopiedId(null), 2000);
   }
 
   async function uploadImage(e: any) {
@@ -210,7 +214,9 @@ export default function AdminPanel() {
 
                     {/* Actions */}
                     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                      <button onClick={() => copyOrder(order)} style={{ background: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', padding: '8px 14px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>📋 Copy All</button>
+                      <button onClick={() => copyOrder(order)} style={{ background: copiedId === order.id ? '#10b981' : '#f1f5f9', color: copiedId === order.id ? 'white' : '#475569', border: '1px solid #e2e8f0', padding: '8px 14px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, transition: 'all 0.2s' }}>
+                        {copiedId === order.id ? '✓ Copied' : '📋 Copy All'}
+                      </button>
                       <select value={status} onChange={e => updateStatus(order.id, e.target.value)}
                         style={{ flex: 1, padding: '8px 12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px', background: 'white', cursor: 'pointer' }}>
                         {['Pending', 'Confirmed', 'Retry', 'Delivered', 'Cancelled'].map(s => (
