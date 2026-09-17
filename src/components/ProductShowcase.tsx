@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const BACKEND_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://web-production-5ecb3.up.railway.app';
 
 export default function ProductShowcase() {
-  const [productImage, setProductImage] = useState("/wooden-kitchen-set.jpg");
+  const [productImage, setProductImage] = useState("/wooden-kitchen-set.jpg");  // Local default - fast load
   const [price, setPrice] = useState(999);
   const [originalPrice, setOriginalPrice] = useState(1200);
 
