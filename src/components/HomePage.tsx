@@ -8,10 +8,14 @@ import Footer from './Footer';
 import { trackAddToCart } from '../utils/facebook-pixel';
 import { useState, useEffect } from 'react';
 
+const BACKEND_URL = 'https://web-production-5ecb3.up.railway.app';
+
 export default function HomePage() {
   const [showStickyButton, setShowStickyButton] = useState(true);
 
   useEffect(() => {
+    // Ping Railway to wake it up immediately when page loads
+    fetch(`${BACKEND_URL}/api/ping`).catch(() => {});
     const handleScroll = () => {
       const orderForm = document.getElementById('order-form');
       if (orderForm) {
