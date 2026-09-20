@@ -83,7 +83,7 @@ export default function AdminPanel() {
   }
 
   function copyOrder(order: any) {
-    const text = `নাম: ${order.customerName}\nফোন: ${order.phoneNumber}\nঠিকানা: ${order.address}\nপরিমাণ: ${order.quantity} সেট\nমোট: ৳${order.totalAmount}`;
+    const text = `${order.customerName}\n${order.phoneNumber}\n${order.address}`;
     navigator.clipboard.writeText(text);
     setCopiedId(order.id);
     setTimeout(() => setCopiedId(null), 2000);
