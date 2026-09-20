@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { trackLead, trackPurchase } from "../utils/facebook-pixel";
+import React, { useState, useEffect } from "react";
+import { trackLead, trackInitiateCheckout } from "../utils/facebook-pixel";
 
 const BACKEND_URL = "https://web-production-5ecb3.up.railway.app";
 
@@ -20,6 +20,10 @@ export default function OrderForm() {
   const selectedOption = quantityOptions.find((o) => o.value === selectedQty)!;
   const deliveryCharge = 100;
   const totalPrice = selectedOption.price + deliveryCharge;
+
+  useEffect(() => {
+    trackInitiateCheckout(totalPrice);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
