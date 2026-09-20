@@ -30,7 +30,6 @@ export default function OrderForm() {
     if (submitting) return;
     setSubmitting(true);
     trackLead();
-    trackPurchase(totalPrice);
     const orderData = {
       customerName: name,
       phoneNumber: phone,
