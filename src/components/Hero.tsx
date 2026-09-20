@@ -10,6 +10,8 @@ export default function Hero() {
   const [productName, setProductName] = useState("৪৮ পিসের ১ সেট + ফ্রি ঢেঁকি");
 
   useEffect(() => {
+    // Track ViewContent only once on mount with default values
+    trackViewContent("ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের খেলনা সেট", 999);
     fetchLatestHeroImage();
     fetchPrice();
 
@@ -19,11 +21,7 @@ export default function Hero() {
     };
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
-  useEffect(() => {
-    trackViewContent(productName, price);
-  }, [price, productName]);
+  }, []); // Only on mount - no dependencies
 
   const fetchPrice = async () => {
     try {
