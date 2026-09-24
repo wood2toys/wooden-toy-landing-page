@@ -43,13 +43,21 @@ export default function OrderForm() {
       source: "wooden-toy-landing-page",
     };
     try {
-      await fetch(`${BACKEND_URL}/api/orders`, {
+      const res = await fetch(`${BACKEND_URL}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
       });
-    } catch (_) {}
-    window.location.href = "/thank-you";
+      const data = await res.json();
+      if (data.success) {
+        window.location.href = "/thank-you";
+      } else {
+        setSubmitting(false);
+        alert("অর্ডার সেভ হয়নি, আবার চেষ্টা করুন।");
+      }
+    } catch (_) {
+      window.location.href = "/thank-you";
+    }
   };
 
   return (
