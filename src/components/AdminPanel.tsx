@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const BACKEND_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://web-production-5ecb3.up.railway.app';
-const API = `${BACKEND_URL}/api`;
+const BACKEND_URL = 'https://web-production-5ecb3.up.railway.app';
+const API = BACKEND_URL + '/api';
+
 
 const STATUS_COLORS: Record<string, string> = {
   Pending: '#f59e0b',
