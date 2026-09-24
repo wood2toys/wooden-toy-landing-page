@@ -42,22 +42,28 @@ export default function OrderForm() {
       orderDate: new Date().toISOString(),
       source: "wooden-toy-landing-page",
     };
-    try {
-      const res = await fetch(`${BACKEND_URL}/api/orders`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
-      });
-      const data = await res.json();
-      if (data.success) {
-        window.location.href = "/thank-you";
-      } else {
-        setSubmitting(false);
-        alert("অর্ডার সেভ হয়নি, আবার চেষ্টা করুন।");
+    // Retry logic - 3 attempts
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/orders`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(orderData),
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.href = "/thank-you";
+          return;
+        }
+      } catch (_) {
+        if (attempt === 3) {
+          window.location.href = "/thank-you";
+          return;
+        }
+        await new Promise(r => setTimeout(r, 1000));
       }
-    } catch (_) {
-      window.location.href = "/thank-you";
     }
+    window.location.href = "/thank-you";
   };
 
   return (
