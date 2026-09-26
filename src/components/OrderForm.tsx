@@ -94,7 +94,7 @@ export default function OrderForm() {
               <label className="block text-[#8B4513] font-semibold mb-2">পরিমাণ (সেট)</label>
               <div className="w-full px-2 py-3 rounded-xl border-2 border-[#D4AF37]/20 bg-white text-[#2C1810] cursor-pointer flex justify-between items-center"
                 onClick={() => setShowDropdown(!showDropdown)}>
-                <span className="text-[11px] leading-tight pr-1 whitespace-nowrap overflow-hidden">{selectedOption.text}</span>
+                <span className="text-[11px] leading-tight pr-1 whitespace-nowrap overflow-hidden font-bold">{selectedOption.text}</span>
                 <svg className={`w-5 h-5 flex-shrink-0 transform transition-transform ${showDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
