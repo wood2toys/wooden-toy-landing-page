@@ -1,52 +1,15 @@
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { trackViewContent, trackAddToCart } from "../utils/facebook-pixel";
 
-const BACKEND_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://web-production-5ecb3.up.railway.app';
+const heroImage = "/wooden-kitchen-set.jpg";
+const price = 999;
+const productName = "ঢেঁকি ডাইনিং সহ ৫০ পিসের মেহগনি কাঠের বিশাল খেলনা সেট";
 
 export default function Hero() {
-  const [heroImage, setHeroImage] = useState("/wooden-kitchen-set.jpg");  // Local default - fast load
-  const [price, setPrice] = useState(999);
-  const [productName, setProductName] = useState("৪৮ পিসের ১ সেট + ফ্রি ঢেঁকি");
-
   useEffect(() => {
-    // Track ViewContent only once on mount with default values
-    trackViewContent("ডাইনিং সহ ৪৮ পিসের প্রিমিয়াম মেহগনি কাঠের খেলনা সেট", 999);
-    fetchLatestHeroImage();
-    fetchPrice();
-
-    const handleMessage = (event) => {
-      if (event.data.type === 'HERO_IMAGE_UPDATED') fetchLatestHeroImage();
-      if (event.data.type === 'PRICE_UPDATED') fetchPrice();
-    };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []); // Only on mount - no dependencies
-
-  const fetchPrice = async () => {
-    try {
-      const response = await fetch(`${BACKEND_URL}/api/price`);
-      const data = await response.json();
-      if (data.success) {
-        setPrice(data.price);
-        setProductName(data.productName);
-      }
-    } catch (error) {
-      console.log('Using default price');
-    }
-  };
-
-  const fetchLatestHeroImage = async () => {
-    try {
-      const response = await fetch(`${BACKEND_URL}/api/images`);
-      const data = await response.json();
-      if (data.success && data.images.length > 0) {
-        setHeroImage(`${BACKEND_URL}${data.images[0].url}`);
-      }
-    } catch (error) {
-      console.log('Using default image');
-    }
-  };
+    trackViewContent(productName, price);
+  }, []);
 
   const handleOrderClick = () => {
     trackAddToCart(productName, price);
@@ -71,24 +34,23 @@ export default function Hero() {
         <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#5D4E37] mb-4 sm:mb-6 md:mb-8 max-w-lg mx-auto leading-relaxed font-medium px-3 sm:px-4">
           সেট, যা খেলার মাধ্যমে শিশুর শেখা, কল্পনাশক্তি ও মেধা বিকাশে সহায়তা করে।
         </p>
-        
+
         {/* Product Image */}
         <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto mb-4 sm:mb-6 md:mb-8 px-2 sm:px-4">
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg w-full">
-            <img 
+            <img
               src={heroImage}
               alt={productName}
               className="w-full h-auto object-cover"
             />
-            {/* Price Badge on Image */}
-            <div className="absolute top-1 sm:top-2 md:top-4 right-1 sm:right-2 md:right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1 md:py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg">
+            <div className="absolute top-1 sm:top-2 md:top-4 right-1 sm:right-2 md:right-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 sm:px-3 md:px-4 py-1 rounded-full font-bold text-xs sm:text-sm shadow-lg">
               অফার প্রাইস: ৳{price}
             </div>
           </div>
-          
-          {/* Order Button below Image */}
+
+          {/* Order Button */}
           <div className="mt-3 sm:mt-4 md:mt-6 w-full">
-            <button 
+            <button
               onClick={handleOrderClick}
               className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 sm:py-4 rounded-xl text-base sm:text-lg md:text-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-orange-400"
             >
