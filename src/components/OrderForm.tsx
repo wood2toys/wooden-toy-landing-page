@@ -4,9 +4,9 @@ import { trackLead, trackInitiateCheckout } from "../utils/facebook-pixel";
 const BACKEND_URL = "https://web-production-5ecb3.up.railway.app";
 
 const quantityOptions = [
-  { value: 1, text: "৪৮ পিসের ১ সেট + ফ্রি ঢেঁকি - ৳৯৯৯", price: 999 },
-  { value: 2, text: "৪৮ পিসের ২ সেট + ২টি ফ্রি ঢেঁকি - ৳১৯৯৮", price: 1998 },
-  { value: 3, text: "৪৮ পিসের ৩ সেট + ৩টি ফ্রি ঢেঁকি - ৳২৯৯৭", price: 2997 },
+  { value: 1, text: "ডাইনিং সহ ৫০ পিসের খেলনা সেট + ফ্রি ঢেঁকি - ৳৯৯৯", price: 999 },
+  { value: 2, text: "ডাইনিং সহ ৫০ পিসের ২ সেট + ২টি ফ্রি ঢেঁকি - ৳১৯৯৮", price: 1998 },
+  { value: 3, text: "ডাইনিং সহ ৫০ পিসের ৩ সেট + ৩টি ফ্রি ঢেঁকি - ৳২৯৯৭", price: 2997 },
 ];
 
 export default function OrderForm() {
