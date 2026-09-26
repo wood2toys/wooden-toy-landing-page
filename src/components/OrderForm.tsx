@@ -5,8 +5,8 @@ const BACKEND_URL = "https://web-production-5ecb3.up.railway.app";
 
 const quantityOptions = [
   { value: 1, text: "ঢেঁকি ডাইনিং সহ ৫০ পিসের ১ সেট - ৳৯৯৯", price: 999 },
-  { value: 2, text: "ডাইনিং সহ ৫০ পিসের ২ সেট - ৳১৯৯৮", price: 1998 },
-  { value: 3, text: "ডাইনিং সহ ৫০ পিসের ৩ সেট - ৳২৯৯৭", price: 2997 },
+  { value: 2, text: "ঢেঁকি ডাইনিং সহ ৫০ পিসের ২ সেট - ৳১৯৯৮", price: 1998 },
+  { value: 3, text: "ঢেঁকি ডাইনিং সহ ৫০ পিসের ৩ সেট - ৳২৯৯৭", price: 2997 },
 ];
 
 export default function OrderForm() {
