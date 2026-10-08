@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { trackLead, trackInitiateCheckout } from "../utils/facebook-pixel";
+import { trackPurchase, trackInitiateCheckout } from "../utils/facebook-pixel";
 
 const BACKEND_URL = "https://web-production-5ecb3.up.railway.app";
 
@@ -51,7 +51,7 @@ export default function OrderForm() {
         });
         const data = await res.json();
         if (data.success) {
-          trackLead();
+          trackPurchase(totalPrice);
           window.location.href = "/thank-you";
           return;
         }
