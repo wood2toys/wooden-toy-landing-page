@@ -29,7 +29,6 @@ export default function OrderForm() {
     e.preventDefault();
     if (submitting) return;
     setSubmitting(true);
-    trackLead();
     const orderData = {
       customerName: name,
       phoneNumber: phone,
