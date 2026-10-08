@@ -2,10 +2,7 @@ import { useEffect } from 'react';
 
 export default function ThankYou() {
   useEffect(() => {
-    // Facebook Pixel Purchase event
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Purchase', { value: 999, currency: 'BDT' });
-    }
+    // Purchase pixel fires in OrderForm after save confirmed
   }, []);
 
   return (
