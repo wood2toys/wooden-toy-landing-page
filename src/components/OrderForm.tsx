@@ -52,7 +52,7 @@ export default function OrderForm() {
         const data = await res.json();
         if (data.success) {
           trackPurchase(totalPrice);
-          window.location.href = "/thank-you";
+          window.location.href = "/thank-you?product=" + encodeURIComponent(selectedOption.text) + "&price=" + selectedOption.price + "&delivery=" + deliveryCharge + "&total=" + totalPrice;
           return;
         }
       } catch (_) {
