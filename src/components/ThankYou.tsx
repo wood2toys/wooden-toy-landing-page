@@ -116,8 +116,7 @@ export default function ThankYou() {
             color: '#5D4E37'
           }}>
             <div>📦 পণ্য: {decodeURIComponent(new URLSearchParams(window.location.search).get('product') || '') || 'ঢেঁকি ডাইনিংসহ ৫০ পিসের ১ সেট'}</div>
-            <div>💰 মূল্য: ৳{new URLSearchParams(window.location.search).get('price') || '৯৯৯'}</div>
-            <div>🚚 ডেলিভারি চার্জ: ৳{new URLSearchParams(window.location.search).get('delivery') || '১০০'}</div>
+            <div> ডেলিভারি চার্জ: ৳{new URLSearchParams(window.location.search).get('delivery') || '১০০'}</div>
             <div style={{
               fontWeight: 'bold',
               borderTop: '1px solid #D4AF37',
